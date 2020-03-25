@@ -1,0 +1,6 @@
+mixin flashMessages()
+  each flash in Object.keys(flashes)
+    div(class=`alert alert-dismissable alert-${flash}`)
+      button.close(type='button' data-dismiss='alert' aria-label='Close')
+        span(aria-hidden='true') &times;
+      span.capitalize #{flashes[flash]}

@@ -1,0 +1,71 @@
+extends layout
+include ./mixins/_flash-messages
+
+block content
+  section
+    .container
+      .row
+        .col-md-6
+        .col-md-6
+          .container.card.bg-light
+              h4.card-title.mt-3.text-center Create Account
+              p.text-center Get started with your free account
+              form(method='POST', action="/users/register")
+                +flashMessages()
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-user
+                  input#firstName.form-control(name='firstName', placeholder='First name', type='text' value='' required="")
+                // form-group//
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-user
+                  input#lastName.form-control(name='lastName', placeholder='Last name', type='text' value='' required="")
+                // form-group//
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-envelope
+                  input#email.form-control(name='email', placeholder='Email address', type='email' value='' required="")
+                // form-group//
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-phone
+                  input#mobileNumber.form-control(name='phone', placeholder='Phone number', type='text' value='' required="")
+                // form-group//
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-lock
+                  input#password.form-control(name='password' placeholder='Create password', type='password' required="")
+                // form-group//
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-map-marker
+                  input#address.form-control(name='address' placeholder='Address', type='text' required="")
+                .form-group.input-group
+                  .input-group-prepend
+                    span.input-group-text
+                      i.fa.fa-bullhorn
+                  select#audience.form-control(name='audience')
+                    option(selected='')  How did you hear of us
+                    option(value='Facebook') Facebook
+                    option(value='Instagram') Instagram
+                    option(value='Twitter') Twitter
+                    option(value='Google Advert') Google Advert
+                    option(value='Friends') Friends
+                .form-group.input-group
+                  .input-group-prepend
+                  input#isAdmin.form-control(type='hidden', name='isAdmin', value='')
+                // form-group end.
+                .form-group
+                  button.btn.btn-primary.btn-block(type='submit')  Create Account 
+                // form-group//
+                p.text-center
+                  | Have an account? 
+                  a(href='/login') Log In
+

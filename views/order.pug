@@ -1,0 +1,90 @@
+extends layout
+include ./mixins/_flash-messages
+
+block content
+    .container
+        .col-sm-12
+            br
+            h2 View Order
+        br
+        .order-layout.col-md-12
+            .row
+                .col-md-12.bottom-pad-20
+                    a.btn.btn-outline-info.float-right(href='/users/orders') Go Back
+            br
+            ul.list-group
+                li.list-group-item.list-group-input-pad
+                    strong  Order status: 
+                        span.text-
+                    span.text-success.float-right 
+                        b #{result.orderStatus}
+                li.list-group-item
+                    strong  Order date: 
+                    span.float-right
+                        b   #{result.orderDate}
+                li.list-group-item
+                    strong  Order ID: 
+                    span.float-right 
+                        b #{result.orderPaymentId}
+                li.list-group-item
+                    strong  Payment Gateway Response: 
+                    span.float-right 
+                        b #{result.orderGatewayResponse}
+                li.list-group-item
+                    strong  Payment Gateway: 
+                    span.float-right 
+                        b #{result.orderPaymentGateway}
+                li.list-group-item
+                    strong  Order total amount: 
+                    span.float-right 
+                        b #{result.orderProducts.totalPrice}
+                li.list-group-item
+                    strong  Email address: 
+                    span.float-right 
+                        b #{result.orderEmail}
+                li.list-group-item
+                    strong  First Name: 
+                    span.float-right 
+                        b #{result.orderFirstName}
+                li.list-group-item
+                    strong  Last Name: 
+                    span.float-right 
+                        b #{result.orderLastName} 
+                li.list-group-item
+                    strong  Address 1: 
+                    span.float-right 
+                        b #{result.orderAddress}
+                li.list-group-item
+                    strong  Country: 
+                    span.float-right
+                        b #{result.orderCountry}
+                li.list-group-item
+                    strong  State: 
+                    span.float-right 
+                        b #{result.orderState}
+                li.list-group-item
+                    strong  Postcode: 
+                    span.float-right 
+                        b #{result.orderPostcode}
+                li.list-group-item
+                    strong  Phone number: 
+                    span.float-right 
+                        b #{result.orderPhone}
+                li.list-group-item
+                    strong  Order comment: 
+                    span.float-right
+                li.list-group-item #{result.orderComment}
+                li.list-group-item
+                    strong.text-info Products ordered
+                li.list-group-item
+                    each item, index in orders
+                        ul.list-group
+                            li.list-group-item #{index.name}
+                            li.list-group-item  #{index.price}
+                            li.list-group-item #{index.qty} 
+                li.list-group-item
+                    strong.text-info
+                        b Total Price 
+                    span.float-right #{result.orderProducts.totalPrice}
+                input#order_id(type='hidden', value='5e3f02b6aa056411043e9f88')
+            br

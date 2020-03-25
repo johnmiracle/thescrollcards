@@ -1,0 +1,28 @@
+extends layout
+include ./mixins/_flash-messages
+
+block content
+    // Modal
+    .container
+        .row
+            .col-md-3
+            .col-md-6
+                #myModal
+                    .modal-dialog.modal-confirm
+                        .modal-content
+                            .modal-header
+                                .icon-box
+                                    center
+                                        i.font-circle.fa.fa-check
+                            .modal-body.text-center
+                                h4 Great!
+                                p.model-text
+                                    | Hello #{user.firstName}, 
+                                    br
+                                    | Your payment was successfully
+                                    br
+                                    | with transaction reference number #{reference}
+                                a.btn.btn-success( href="/", data-dismiss='modal')
+                                    span Continue  
+                                    i.material-icons
+            .col-md-3

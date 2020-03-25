@@ -1,0 +1,189 @@
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  title Phd
+  meta(content='We are a forward thinking prints+designs company which specializes in creating strong brands for companies with interest in cutting-edge excellence.', name='description')
+  meta(content='Profound House of Designs', name='PHD')
+  meta(content='Profound cards, prints, designs,customized cards, phd logo,invitation cards, wedding cards,business cards, phdng.com, profound house of designs, about phd,', name='keywords')
+  // Bootstrap cdn
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', type='text/css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Nunito')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Arvo')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js')
+  link(rel='stylesheet', href='/stylesheets/style.css', type='text/css')
+
+body
+  section
+    .container
+      nav.navbar.navbar-expand-lg.navbar-light
+        a.navbar-brand(href='/') 
+          img(src="/img/phd-1 design.png", alt="Logo" width='65%')
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse.justify-content-between
+          ul.navbar-nav.centered.m-auto
+          div.centered
+            ul.navbar-nav.mr-auto
+              if user
+                li.nav-item.dropdown
+                  a#navbardrop.nav-link.dropdown-toggle(href='#', data-toggle='dropdown')
+                    i.fa.fa-user
+                      br
+                      | #{user.firstName}
+                  .dropdown-menu
+                    a.dropdown-item.nav-drop(href='/users/profile') My Profile
+                    a.dropdown-item.nav-drop(href='/users/orders') Order History
+                    a.dropdown-item.nav-drop(href='/logout') Log Out
+                li.nav-item
+                    a.nav-link(href='/cart')
+                      i.fa.fa-shopping-cart 
+                        br 
+                        span Cart
+                      if session.cart
+                        span.badge= session.cart.totalQty
+              else
+                li.nav-item
+                    a.nav-link(href='/login')
+                      i.fa.fa-user 
+                        br
+                        span Sign In
+                li.nav-item
+                    a.nav-link(href='/cart')
+                      i.fa.fa-shopping-cart
+                        br 
+                        span Cart
+                      if session.cart
+                        span.badge.badge-primary= session.cart.totalQty
+              
+  //
+    -------------------------
+    -----------------------------
+    ------Block 1 ends here------
+    -----------------------------
+    --------------------------
+  //
+    -------------------------
+    -----------------------------
+    ----Section Nav starts here--
+    -----------------------------
+    --------------------------
+  section.sect-1
+    .container-fluid
+      nav.navbar-expand-lg.navbar-dark.primary-color
+        // Collapse button
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#basicExampleNav', aria-controls='basicExampleNav', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        // Collapsible content
+        #basicExampleNav.collapse.navbar-collapse.justify-content-center
+          // Links
+          ul.navbar-nav.sectionNav
+            .dropdown
+              a.dropbtn
+                | All Products
+                i.fa.fa-caret-down
+              .dropdown-menu(aria-labelledby='navbarDropdown')
+                //- each category, i in categories
+                //-   a.dropdown-item(href='/logo' value=category.id) #{category.name}
+                a.dropdown-item(href='/stationary') Corporate Stationary 
+                a.dropdown-item(href='/gift') Corporate Gift
+                a.dropdown-item(href='/promotionalItem') Promotional items
+                a.dropdown-item(href='/Banners') Banners &amp; Large Formats
+                a.dropdown-item(href='/notes&jotter') Note &amp; Jotters
+                a.dropdown-item(href='/Businesscards')  Business Cards 
+                a.dropdown-item(href='/letterhead') Letter Heads
+                a.dropdown-item(href='/brouchures') Brouchures
+                a.dropdown-item(href='/poster') Posters 
+                a.dropdown-item(href='/diary') Diary
+            li.nav-item
+              a(href='/businesscards')  Polish Paper Scroll
+            li.nav-item
+              a(href='/gift') Velvet Scroll
+            li.nav-item
+              a(href='/mugs') Luxury Scroll
+  //
+    -------------------------
+    -----------------------------
+    ----Section Nav ends here----
+    -----------------------------
+    --------------------------
+
+  block content
+
+  section.bk-yellow
+    .container-fluid
+      .row.ft-pad
+        .col-md-3
+          ul.ul-menu
+            li.active
+              | PHD
+            li
+              a(href='') Our Services
+            li
+              a(href='')  About Us
+            li
+              a(href='') Testimonials
+        .col-md-3
+          .ul-main
+            ul.ul-menu
+              li.active Explore
+              li
+                a(href='') Our Services
+              li
+                a(href='')  About Us
+              li
+                a(href='') Testimonials
+        .col-md-3
+          div
+            ul.ul-menu
+              li.active Contact Us
+              li Email: enquireonphd@gmail.com
+              li Phone: 08067651216
+              li
+                a(href='')
+                  | Address: 26, Shipolu street opp. FCMB, Onipanu, Shomolu, Lagos State.
+        .col-md-3
+          .ul-main
+            ul.ul-menu
+              li.active
+                | Delivery
+              li
+                img(src='./img/delivery-logos.png', alt='')
+      .row.ft-low
+        .col-md-6.ft-copy
+          center
+            p
+              strong TheScrollCard Shop &copy; 2020. All Rights Reserved.
+        .social_footer.bounce.col-md-6
+          ul
+            li
+              a(href='#')
+                span
+                  i.fa.fa-facebook.footer-social
+            li
+              a(href='#')
+                span
+                  i.fa.fa-twitter.footer-social
+            li
+              a(href='#')
+                span
+                  i.fa.fa-instagram.footer-social
+            li
+              a(href='#')
+                span
+                  i.fa.fa-google.footer-social
+  //
+    -------------------------
+    -----------------------------
+    --FOOTER SECTION ENDS HERE---
+    -----------------------------
+    --------------------------
+  // Scripts
+  script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
+  //- script(type='text/javascript', src='assets/plugins/back-to-top.js')
+  script(src='../javascripts/main.js')

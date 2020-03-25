@@ -1,0 +1,96 @@
+extends layout
+include ./mixins/_flash-messages
+
+
+block content
+    section.sect1
+      .container-fluid
+        .contact
+          h2
+            | Contact
+    //
+      -------------------------
+      -----------------------------
+      ------Block 2 ends here------
+      -----------------------------
+      --------------------------
+    //
+      -------------------------
+      -----------------------------
+      -----Block 3 starts here-----
+      -----------------------------
+      --------------------------
+    section.sect2
+      .container
+        .row
+          .col-md-6.contain_form
+            h2 Contact with us
+            p Send us a message
+            // BEGIN FORM
+            form#form1(name='form1', method='post', action='/contact-us')
+              .row-fluid
+                span#errorMessage.control-label
+              .control-group
+                label.control-label Name
+                .controls
+                  input#name.form-control.form-control-lg(name='name', type='text', placeholder='Your full name')
+              .control-group
+                label.control-label Email 
+                .controls
+                  input#email.form-control.form-control-lg(name='email', type='text', placeholder='your email address')
+              .control-group
+                label.control-label Message
+                .controls
+                  textarea#message.textbox.form-control.form-control-lg(name='message', rows='10', placeholder='what would you like to tell us?')
+              div
+                label
+                  input.btn.theme-btn(name='Button', type='button', value='Send', onclick='validation()')
+            // END FORM
+          .col-md-6
+            center
+              .sec-blck
+                h2 Our Contacts
+                div
+                  h3 Address
+                  p
+                    | 1st floor, 28 Shipeolu Street,
+                    br
+                    |                                     Onipanu, Lagos. 
+                    br
+                    |                                     Elediye Bus-Stop by FCMB
+                    br
+                  h4 Land Mark: 
+                  p
+                    | FCMB, IKORODU ROAD.
+                  h4 Working Hour
+                  p
+                    | Monday - Friday: 10am - 6pm
+                  p Saturday: 12noon - 4pm
+                  h4 Phone:
+                  p
+                    | 0805-675-3614,
+                  p 0803-210-2326
+                div
+                  h4 Email
+                  p info@phdng.com
+                  p enquiryonphd@gmail.com
+                br
+                h3 Payment Opition:
+                h4 Bank Transfer
+                p Profound House of Designs
+                img(src='../img/diamondbank.jpg', alt='')
+                h3 4552010437
+                br
+                p Sort Code: 056
+                br
+                img(src='../img/ecobank2.jpg', alt='')
+                br
+                h3 0045731764
+                p Sort Code: 063151404
+                .clearfix.margin-bottom-30
+    //
+      -------------------------
+      -----------------------------
+      ------Block 3 ends here------
+      -----------------------------
+      --------------------------

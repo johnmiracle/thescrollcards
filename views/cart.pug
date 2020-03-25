@@ -1,0 +1,58 @@
+extends layout
+include ./mixins/_flash-messages
+
+block content
+  section
+      .container
+        .shopping-cart
+          +flashMessages()
+          if (products.length > 0)
+            h3 Cart
+            .column-labels
+              label.product-image Image
+              label.product-details Product
+              label.product-price Price
+              label.product-quantity Quantity
+              label.product-removal Remove
+              label.product-line-price Total
+            each product in products
+              .product
+                .product-image
+                  img(src=''+product.item.imageUrl, alt='', width='100%', height='100')
+                .product-details
+                  .product-title #{product.item.name} 
+                  p.product-description  
+                    |  #{product.item.description}
+                .product-price #{product.item.price}
+                .product-quantity
+                  .btn-group(role='group', aria-label='...')
+                    a#minus.btn.btn-danger(type='submit' href='/reducebyone/'+product.item._id) -
+                    a#total.btn.btn(type='submit')=product.qty
+                    a#plus.btn.btn-danger(type='submit' href='/addbyone/'+product.item._id) +
+                .product-removal
+                  a.remove-product.float-right(href='/remove/'+product.item._id)
+                    | Remove
+                .product-line-price #{`${product.price}`}
+            .totals
+              .totals-item
+                label Tax (5%)
+                #cart-tax.totals-value  5%
+              .totals-item
+                label Shipping
+                #cart-shipping.totals-value 15.00
+              .totals-item.totals-item-total
+                label Grand Total
+                #cart-total.totals-value #{`${totalPrice}`}
+              a.checkout(href='/checkout') Checkout
+          else  
+            .card-content
+              center
+                i.fa.fa-shopping-cart
+                  h2
+                    | Cart empty
+
+
+
+                
+              
+      

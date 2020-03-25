@@ -1,0 +1,133 @@
+extends layout
+include ./mixins/_flash-messages
+  script(src='https://www.paypal.com/sdk/js?client-id=AWl8wDxinaB5LMTObH3D2Hn_SbQF_W0oOTqahfyW9xBAiCKfnqJMlpV6OtEdf4K_Kqg6vD98K2zU8YXQ') 
+  script(src="https://js.paystack.co/v1/inline.js")               
+
+block content
+    .container-fluid.my-5
+      if (products)
+        .row.justify-content-center
+          .col-xl-10
+            +flashMessages()
+            .card.shadow-lg
+              .row.justify-content-around
+                .col-md-5
+                  .card.border-0
+                    .card-header.pb-0
+                      h2.card-title.space Checkout
+                      p.card-text.text-muted.mt-4.space SHIPPING DETAILS
+                      hr.my-0
+                    .card-body
+                      .row.justify-content-between
+                        .col-auto.mt-0
+                          p
+                            b #{user.address}
+                        .col-auto
+                          p
+                            b #{user.email}
+                      form(method='POST', action='/paystack/pay')
+                        script(src="https://js.paystack.co/v1/inline.js", type='text/javascript')
+                        .form-group
+                          label.small.text-muted.mb-1(for='FIRST NAME')
+                            | FIRST NAME 
+                          input.form-control.form-control-sm(type='text', name='shipFirstname', aria-describedby='helpId', placeholder='First Name' required='')
+                        .form-group
+                          label.small.text-muted.mb-1(for='LAST NAME')
+                            | LAST NAME 
+                          input.form-control.form-control-sm(type='text', name='shipLastname', aria-describedby='helpId', placeholder='Last Name' required='')
+                        .form-group
+                          label.small.text-muted.mb-1(for='ADDRESS')
+                            | ADDRESS
+                          input.form-control.form-control-sm(type='text', name='shipAddr1', aria-describedby='helpId', placeholder='Address' required='')
+                        .form-group
+                          label.small.text-muted.mb-1(for='EMAIL')
+                            | EMAIL
+                          input.form-control.form-control-sm(type='email', name='shipEmail', aria-describedby='helpId', placeholder='Your email' required='')
+                        .row.no-gutters
+                          .col-sm-6.pr-sm-2
+                            .form-group
+                              label.small.text-muted.mb-1(for='COUNTRY')
+                                | COUNTRY
+                              input.form-control.form-control-sm(type='text', name='shipCountry', aria-describedby='helpId', placeholder='Country' required='')
+                          .col-sm-6
+                            .form-group
+                              label.small.text-muted.mb-1(for='STATE')
+                                | STATE
+                              input.form-control.form-control-sm(type='text', name='shipState', aria-describedby='helpId', placeholder='State' required='')
+                        .row.no-gutters
+                          .col-sm-6.pr-sm-2
+                            .form-group
+                              label.small.text-muted.mb-1(for='POST CODE')
+                                | POST CODE
+                              input.form-control.form-control-sm(type='text', name='shipPostcode', aria-describedby='helpId', placeholder='Post Code' required='')
+                          .col-sm-6
+                            .form-group
+                              label.small.text-muted.mb-1(for='MOBILE NUMBER')
+                                | MOBILE NUMBER
+                              input.form-control.form-control-sm(type='Number', name='shipPhoneNumber', aria-describedby='helpId', placeholder='Phone' required='')  
+                          .col-sm-12
+                            .form-group
+                              label.small.text-muted.mb-1(for='MOBILE NUMBER')
+                                | ANY OTHER COMMENT?
+                              textarea.form-control.form-control-sm(type='text', name='shipOrderComment', aria-describedby='helpId', placeholder='Any other comment, if any', rows='6' )
+                        .row.mb-md-5
+                          .col
+                            .bttn.pt-2
+                              button#pay-now.btn.btn-lg.btn-block(type='submit', name='sumbit') PURCHASE #{`${totalPrice}`}
+                .col-md-5.mobile
+                  .card.border-0
+                    .card-header.card-2
+                      p.card-text.text-muted.mt-md-4.mb-2.space
+                        | YOUR ORDER 
+                        span.small.text-muted.ml-2.cursor-pointer(href='/cart') EDIT SHOPPING BAG
+                      hr.my-2
+                    .card-body.pt-0
+                      .row.justify-content-between
+                        each product in products
+                          .col-auto.col-md-7
+                            .media.flex-column.flex-sm-row
+                              img.img-fluid(src=''+product.item.imageUrl, width='30%', height='70')
+                              .media-body.my-auto
+                                .row
+                                  .col-md-12
+                                    p.mb-0
+                                      b #{product.item.name} 
+                                    small.text-muted #{product.item.description}
+                          .pl-0.flex-sm-col.col-auto.my-auto
+                            p.boxed-1= product.qty
+                          .pl-0.flex-sm-col.col-auto.my-auto
+                            p
+                              b #{`${product.price}`}
+                        hr.my-2
+                      br
+                      br
+                      .row
+                        .col
+                          .row.justify-content-between
+                            .col
+                              p.mb-1
+                                b Shipping (₦)
+                            .flex-sm-col.col-auto
+                              p.mb-1
+                                b ₦ 0
+                          br
+                          .row.justify-content-between
+                            .col-4
+                              p
+                                b Total (₦)
+                            .flex-sm-col.col-auto
+                              p.num.mb-1
+                                b#money #{`${totalPrice}`}
+                          hr.my-0
+      else  
+        .card-content
+         center
+            i.fa.fa-shopping-cart
+              h2
+                | Cart empty
+        script.
+          function currencyFormat(num) {
+            return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+          }
+
+
