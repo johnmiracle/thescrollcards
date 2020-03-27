@@ -22,12 +22,13 @@ const Productschema = new mongoose.Schema({
   material: {
     type: String,
     required: true
-
-    [-]
   },
   imageUrl: {
     type: String,
     required: true
+  },
+  color: {
+    type: String
   },
   description: {
     type: String,

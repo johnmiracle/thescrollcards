@@ -1,0 +1,120 @@
+extends ./admin/base
+include ./mixins/_flash-messages
+
+block content
+    .col-sm-12
+        br
+        h2 View Order
+    br
+    .order-layout.col-md-12
+        +flashMessages()
+        .row
+          .col-md-12.bottom-pad-20
+            a.btn.btn-outline-info.float-right(href='/admin/orders') Go Back
+        br
+        ul.list-group
+          li.list-group-item.list-group-input-pad
+            strong  Order status: 
+              span.text-success.float-right
+              .float-right.col-md-2
+                form(method='POST', action="/admin/order/update/"+result._id)
+                  select#orderStatus.form-control(name='status')
+                    option(selected='')=result.orderStatus
+                    option(value='Completed') Completed
+                    option(value='Created') Created
+                    option(value='Paid') Paid
+                    option(value='Pending') Pending
+                    option(value='Cancelled') Cancelled
+                    option(value='Delined') Declined
+                    option(value='Shipped') Shipped
+                  button#orderStatusUpdate.btn.btn-outline-success.float-left(type='submit', value='Submit')
+                    | Update
+                    | status
+          li.list-group-item
+            strong  Order date: 
+            span.float-right
+              b #{result.orderDate}
+          li.list-group-item
+            strong  Order ID: 
+            span.float-right 
+              b #{result.orderPaymentId}
+          li.list-group-item
+            strong  Payment Gateway ref: 
+            span.float-right 
+              b ch_1G9yMrL7TBqK1az8Paf1W4eC
+          li.list-group-item
+            strong  Payment Gateway: 
+            span.float-right 
+              b #{result.orderPaymentGateway}
+          li.list-group-item
+            strong  Payment Message: 
+            span.float-right
+              b #{result.orderStatus}
+          li.list-group-item
+            strong  Order net amount: 
+            span.float-right 
+              b &pound;49.95
+          li.list-group-item
+            strong  Order shipping amount: 
+            span.float-right
+              b &pound;25.00
+          li.list-group-item
+            strong  Order total amount: 
+            span.float-right
+              b #{result.orderProducts.totalPrice}
+          li.list-group-item
+            strong  Email address: 
+            span.float-right
+              b #{result.orderEmail}
+          li.list-group-item
+            strong  First Name: 
+            span.float-right
+              b #{result.orderFirstName}
+          li.list-group-item
+            strong  Last Name: 
+            span.float-right
+              b #{result.orderLastName}
+          li.list-group-item
+            strong  Address 1: 
+            span.float-right
+              b #{result.orderAddress}
+          li.list-group-item
+            strong  Country: 
+            span.float-right
+              b #{result.orderCountry}
+          li.list-group-item
+            strong  State: 
+            span.float-right
+              b #{result.orderState}
+          li.list-group-item
+            strong  Postcode: 
+            span.float-right
+              b #{result.orderPostcode}
+          li.list-group-item
+            strong  Phone number: 
+            span.float-right
+              b #{result.orderPhone}
+          li.list-group-item
+            strong  Order type: 
+            span.float-right
+              b Single
+          li.list-group-item
+            strong  Order comment: 
+            span.float-right
+              b
+          li.list-group-item &nbsp;
+          li.list-group-item
+            strong  Full Name: 
+            span.float-right
+              b #{result.user.firstName} #{result.user.lastName}
+          li.list-group-item
+            strong.text-info Products ordered
+          li.list-group-item
+            | #{result.orderProducts}
+            | &gt; &nbsp;
+            span.text-warning  Options: 
+            | ( )
+            .float-right
+              b #{result.orderProducts.totalPrice}
+        input#order_id(type='hidden', value='5e3f02b6aa056411043e9f88')
+    br

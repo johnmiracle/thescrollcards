@@ -1,0 +1,33 @@
+extends ./admin/base
+include ./mixins/_flash-messages
+
+block content
+    .container
+      .table-wrapper
+        .table-title
+          .row
+            .col-sm-8
+              h2
+                | All 
+                b Categories
+            .col-sm-4
+              a.btn.btn-info.add-new(type='button' href='/admin/add-category')
+                i.fa.fa-plus
+                |  Add New
+        table.table.table-bordered
+          thead
+            tr
+              th Category Name
+              th Description
+              th Actions
+
+          tbody
+            each category, i in categories
+                tr
+                td #{category.name}
+                td #{category.description}
+                td
+                  a.edit(title='Edit', data-toggle='tooltip' href="/admin/category/edit/"+category._id)
+                    i.fa.fa-edit
+                  a.delete-product(href='/admin/category/delete/'+category._id)
+                    i.fa.fa-trash

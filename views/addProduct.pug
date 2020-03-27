@@ -1,0 +1,72 @@
+extends ./admin/base
+include ./mixins/_flash-messages
+
+block content
+  .span9
+    .container
+      .admin-top
+        h3#category-subheading.header Add New Product Category
+        +flashMessages()   
+        form#addCategoryForm.well.well-sm(method='post' action='/admin/products/add' enctype="multipart/form-data")
+          .row
+            .col-md-6
+              .form-group
+                label(for='name') Name
+                select.form-control(name='name', required='')
+                  option(selected='')
+                  option(value='polish') Polish Paper Scrolls
+                  option(value='velvet') Velvet Scrolls 
+                  option(value='luxury') Luxury Scrolls
+              .form-group
+                label(for='Code') Card Code
+                input#price.form-control(type='text', name='code', required='')
+              .form-group
+                label.capitalize Category
+                select.form-control(name='category')
+                  option(value='')
+                    each category in categories
+                      option(value=category.id)= category.name
+              .form-group
+                label(for='Material') Material
+                input#description.form-control(type='text', name='material', required='')
+              .form-group
+                label(for='Size') Size
+                select.form-control(name='size', required='')
+                  option(selected='')
+                  option(value='small') Small
+                  option(value='medium') Medium
+                  option(value='big') Big
+              .form-group
+                label(for='Price') Price
+                input#price.form-control(type='text', name='price', required='')              
+              .form-group
+                label(for='Stock') In Stock
+                select.form-control(name='inStock', required='')
+                  option(selected='')
+                  option(value='yes') Yes
+                  option(value='no') No
+              .form-group
+                label(for='Description') Description
+                textarea#description.form-control(type='text', name='description', required='', rows='5')
+            .col-md-6
+              .form-group
+                .btn.btn-primary.btn-sm.float-left
+                  p
+                    | The file size must not be more than
+                    span.txt-bold  500KB
+                    br
+                    | File format must be any of these:
+                    br
+                    span.txt-bold .jpg, .jpeg, .png 
+                  span Choose file
+                  input(type='file' name='myFile' onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" width='600px', height='500px' require='')
+                  br
+                label
+                  br
+                  img#blah(alt='', width='500px', height='500px' src='404image')
+              br
+              br
+              br
+              button.btn.btn-success(type='submit', value='Submit') Add product
+              br 
+              br

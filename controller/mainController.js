@@ -4,7 +4,9 @@ const Order = require("../models/Order");
 const passport = require("passport");
 const Cart = require("../models/cart");
 const axios = require("axios").default;
-
+const { body, validationResult } = require("express-validator");
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 exports.addCart = (req, res, next) => {
   const productId = req.params.id;
@@ -39,16 +41,16 @@ exports.removeOne = (req, res, next) => {
 };
 
 exports.cart = (req, res, next) => {
-  // if cart is empty 
+  // if cart is empty
   if (!req.session.cart) {
     return res.render("cart", {
       products: null || {}
     });
-    }
-    // New Cart Instance
+  }
+  // New Cart Instance
   const cart = new Cart(req.session.cart);
 
-    // render cart and products
+  // render cart and products
   res.render("cart", {
     products: cart.generateArray(),
     tax: cart.tax,
@@ -60,7 +62,7 @@ exports.removeCart = (req, res, next) => {
   const productId = req.params.id;
   const cart = new Cart(req.session.cart ? req.session.cart : {});
 
-    // remove cart
+  // remove cart
   cart.removeItem(productId);
   req.session.cart = cart;
   res.redirect("/cart");
@@ -68,6 +70,34 @@ exports.removeCart = (req, res, next) => {
 
 exports.showLogin = (req, res, next) => {
   res.render("login");
+};
+
+exports.polishScroll = (req, res, next) => {
+  res.render("products");
+};
+
+exports.mediumPolishScroll = (req, res, next) => {
+  res.render("products");
+};
+
+exports.bigPolishScroll = (req, res, next) => {
+  res.render("products");
+};
+
+exports.smallVelvetScroll = (req, res, next) => {
+  res.render("products");
+};
+
+exports.mediumVelvetScroll = (req, res, next) => {
+  res.render("products");
+};
+
+exports.bigVelvetScroll = (req, res, next) => {
+  res.render("products");
+};
+
+exports.luxuryScroll = (req, res, next) => {
+  res.render("products");
 };
 
 exports.login = (req, res, next) => {
@@ -79,11 +109,16 @@ exports.login = (req, res, next) => {
       req.flash("danger", "Username & Password combination doesn't match any of our records");
       return res.redirect("/login");
     }
+
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
-      return res.redirect("/");
+      if (user.isAdmin === true) {
+        return res.redirect("/admin/admin-home");
+      } else {
+        return res.redirect("/");
+      }
     });
   })(req, res, next);
 };
@@ -97,6 +132,60 @@ exports.logout = (req, res) => {
 
 exports.signup = (req, res, next) => {
   res.render("signup");
+};
+
+exports.memberRegister = async (req, res, next) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const password = req.body.password;
+  const address = req.body.address;
+  const audience = req.body.audience;
+  const isAdmin = req.body.isAdmin;
+
+  let user = await User.findOne({ email: req.body.email });
+  if (user) {
+    req.flash("danger", "email is already registered, Please login");
+    res.redirect("/login");
+  }
+
+  body("firstName", "First name is required").notEmpty();
+  body("lastName", "Last name is required").notEmpty();
+  body("email", "email is required").isEmail();
+  body("phone", "Mobile Number is required").notEmpty();
+  body("password", "Passsword is required")
+    .trim()
+    .notEmpty()
+    .isLength({ min: 6 });
+  body("address", "Address is required").notEmpty();
+
+  let err = validationResult(req.body);
+
+  if (!err.isEmpty()) {
+    return res.flash({ err: err });
+  } else {
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+      address,
+      audience
+    });
+    bcrypt.hash(user.password, 10, (err, hash) => {
+      user.password = hash;
+      user.save(function(err) {
+        if (err) {
+          console.log(err);
+        } else {
+          req.flash("success", "Registration is successfull, Please Login");
+          res.redirect("/login");
+        }
+      });
+    });
+  }
 };
 
 exports.checkout = (req, res, next) => {

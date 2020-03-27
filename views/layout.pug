@@ -21,7 +21,7 @@ body
     .container
       nav.navbar.navbar-expand-lg.navbar-light
         a.navbar-brand(href='/') 
-          img(src="/img/phd-1 design.png", alt="Logo" width='65%')
+          img(src="", alt="Logo" width='65%')
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse.justify-content-between
@@ -81,29 +81,43 @@ body
         #basicExampleNav.collapse.navbar-collapse.justify-content-center
           // Links
           ul.navbar-nav.sectionNav
-            .dropdown
-              a.dropbtn
-                | All Products
-                i.fa.fa-caret-down
-              .dropdown-menu(aria-labelledby='navbarDropdown')
-                //- each category, i in categories
-                //-   a.dropdown-item(href='/logo' value=category.id) #{category.name}
-                a.dropdown-item(href='/stationary') Corporate Stationary 
-                a.dropdown-item(href='/gift') Corporate Gift
-                a.dropdown-item(href='/promotionalItem') Promotional items
-                a.dropdown-item(href='/Banners') Banners &amp; Large Formats
-                a.dropdown-item(href='/notes&jotter') Note &amp; Jotters
-                a.dropdown-item(href='/Businesscards')  Business Cards 
-                a.dropdown-item(href='/letterhead') Letter Heads
-                a.dropdown-item(href='/brouchures') Brouchures
-                a.dropdown-item(href='/poster') Posters 
-                a.dropdown-item(href='/diary') Diary
             li.nav-item
-              a(href='/businesscards')  Polish Paper Scroll
+              .dropdown
+                a.dropbtn
+                  | All Products
+                  i.fa.fa-caret-down
+                .dropdown-menu(aria-labelledby='navbarDropdown')
+                  //- each category, i in categories
+                  //-   a.dropdown-item(href='/logo' value=category.id) #{category.name}
+                  a.dropdown-item(href='/small_polish_paper_scroll') Small Polish Paper Scroll
+                  a.dropdown-item(href='/medium_polish_paper_scroll') Medium Polish Paper Scroll
+                  a.dropdown-item(href='/big_polish_paper_scroll') Big Polish Paper Scroll
+                  a.dropdown-item(href='/small_velvet_paper_scroll') Small Velvet Paper Scroll
+                  a.dropdown-item(href='/medium_velvet_paper_scroll') Medium Velvet Paper Scroll
+                  a.dropdown-item(href='/big_velvet_paper_scroll') Big Velvet Paper Scroll
+                  a.dropdown-item(href='/luxury_scroll') Luxury Scroll
             li.nav-item
-              a(href='/gift') Velvet Scroll
+              .dropdown
+                a.dropbtn
+                  | Polish Paper Scroll
+                  i.fa.fa-caret-down
+                .dropdown-menu(aria-labelledby='navbarDropdown')
+                  //- each category, i in categories
+                  //-   a.dropdown-item(href='/logo' value=category.id) #{category.name}
+                  a.dropdown-item(href='/small_polish_paper_scroll') Small Polish Paper Scroll
+                  a.dropdown-item(href='/medium_polish_paper_scroll') Medium Polish Paper Scroll
+                  a.dropdown-item(href='/big_polish_paper_scroll') Big Polish Paper Scroll
             li.nav-item
-              a(href='/mugs') Luxury Scroll
+              .dropdown
+                a.dropbtn
+                  | Velvet Scroll
+                  i.fa.fa-caret-down
+                .dropdown-menu(aria-labelledby='navbarDropdown')
+                  a.dropdown-item(href='/small_velvet_paper_scroll') Small Velvet Paper Scroll
+                  a.dropdown-item(href='/medium_velvet_paper_scroll') Medium Velvet Paper Scroll
+                  a.dropdown-item(href='/big_velvet_paper_scroll') Big Velvet Paper Scroll
+            li.nav-item
+              a(href='/luxury_scroll') Luxury Scroll
   //
     -------------------------
     -----------------------------
