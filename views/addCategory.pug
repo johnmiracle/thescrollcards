@@ -1,0 +1,27 @@
+extends ./admin/base
+include ./mixins/_flash-messages
+
+block content
+  .span9
+    .container
+      .row
+        .col-md-2
+        .col-md-8
+          .admin-top
+            +flashMessages()
+            form#addCategoryForm.well.well-sm(method='post' action='/admin/category/add')
+              center
+                h3#category-subheading.header Add New Category
+              .row
+                .col-md-3
+                .col-md-6
+                  .form-group
+                    label(for='name') Name
+                    input#product-name.form-control(type='text', name='name', required='')
+                  .form-group
+                    label(for='Description') Description
+                    textarea#description.form-control(type='text', name='description', required='', rows='5')
+                  .form-group
+                    input.btn.btn-success(type='submit', value='Submit')
+                .col-md-3
+        .col-md-2  

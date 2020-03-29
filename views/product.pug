@@ -7,19 +7,71 @@ block content
    .container.product-blk
     .row
       +flashMessages()
-      .col-md-7
-        img(src=''+product.imageUrl, alt='', width='60%', height='300')
-      .col-md-5
+      .col-md-7.card-box
+        center
+          img(src=''+product.imageUrl, alt='', width='70%', height='300')
+      .col-md-1
+      .col-md-4.card-detail
         .cart
-          h3 #{product.name}
-          p ₦#{product.price}
-            .form-group
-              input#priceHidden.form-control(type='hidden', name='priceHidden', value='')
-              b Product description:
+          h5.MarT0
+            span Code: 
+            span#lblCode #{product.code}
+          h5#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
+            span Price: 
+            span NGN #{product.price}
+          .form-group
+            input#priceHidden.form-control(type='hidden', name='priceHidden', value='')
+            b Product description:
+            br
+            span #{product.description}
               br
-              | #{product.description}
               br
-              br
+              // -------------------------Price Based on Quantity Section---------------------------------------
+              // -------------------------Price Based on Quantity Section---------------------------------------
+              h3#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
+              p.ptimedays
+                span.plabel Production time for Bulk Order (Days): 
+                br
+                span Regular: 
+                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 6
+                | &nbsp;to
+                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 10
+                span Rush: 
+                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 1
+                |                                     to
+                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 3
+              p
+                span.plabel Weight:
+                span.weight 235
+                | &nbsp;(in Grams)
+              p
+                span.plabel Size:
+                span.Size
+                  | Scroll: 8.5x11, Case: 12.75x2.0x2.0 +
+                  | Mailing Box Env
+                  | (in Inches)
+              p
+                span.plabel Orientation:
+                  |  Portrait (Vertical)
+              p
+                span.plabel
+                  | A Low Quantity Order Card: 
+                  i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom', title='', data-original-title='It means BULK ORDER can be placed in quantity as low as 10 cards and then in multiples of 5. An Extra charge will be applicable. Put qty. required in bulk order to find out about the extra charge.')
+            .iwc_product_Menu
+              ul
+                li
+                  a(href='')
+                    i.glyphicon.glyphicon-lock
+                    | Order Sample
+                li
+                  a.btn.btn-primary(href="")
+                    span
+                      | Bulk
+                      | Order
+            .iwc_prodcutdetail_Continue
+              a(href="")
+                | Continue Shopping
+              small [Shipping cost is on us]
             if user
               a.btn.btn-primary(type='submit', role='button' href='/addtocart/'+product._id) Add to Cart
               br
@@ -29,82 +81,3 @@ block content
               br
               br
               a.btn.btn-warning(href='/register') Signup to begin buying
-        .col-md-3.col-sm-4
-          .rightpanel_layer
-            .price_detail
-              h3.MarT0
-                span Code:
-                span#lblCode S301
-              // -------------------------Price Based on Quantity Section---------------------------------------
-              // -------------------------Price Based on Quantity Section---------------------------------------
-              h3#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
-                span Price: 
-                span#ctl00_ContentPlaceHolder1_lblMainPrice 4.00 US$
-              .hiw-link
-              p.ptimedays
-                span.plabel Production time for Bulk Order (Days): 
-                br
-                span.ptimedaysvalue Regular: 
-                span#ctl00_ContentPlaceHolder1_lbl_Reg_min(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 6
-                | &nbsp;to
-                span#ctl00_ContentPlaceHolder1_lbl_Reg_max(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 10
-                span.ptimedaysvalue Rush: 
-                span#ctl00_ContentPlaceHolder1_lbl_Rus_min(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 1
-                |                                     to
-                span#ctl00_ContentPlaceHolder1_lbl_Rus_max(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 3
-              p#ctl00_ContentPlaceHolder1_pweight.pweight
-                span.plabel Weight:
-                span#ctl00_ContentPlaceHolder1_lblweight 235
-                | &nbsp;(in Grams)
-              p#ctl00_ContentPlaceHolder1_psize.psize
-                span.plabel Size:
-                span#ctl00_ContentPlaceHolder1_lblSize
-                  | Scroll: 8.5x11, Case: 12.75x2.0x2.0 +
-                  | Mailing Box Env
-                |                                     (in Inches)
-              p#ctl00_ContentPlaceHolder1_porientation.psize
-                span.plabel Orientation:
-                |                                     Portrait (Vertical)
-              p#ctl00_ContentPlaceHolder1_divLowQtyOrder.pbulkqcard
-                span.plabel
-                  | A Low Quantity Order Card: 
-                  i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom', title='', data-original-title='It means BULK ORDER can be placed in quantity as low as 10 cards and then in multiples of 5. An Extra charge will be applicable. Put qty. required in bulk order to find out about the extra charge.')
-            .iwc_product_Menu
-              ul#ctl00_ContentPlaceHolder1_ul_ActionCtrls
-                li
-                  a#ctl00_ContentPlaceHolder1_lnkSampleOrder.samplebag-link(data-target='#OrderSampleModal', href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkSampleOrder','')")
-                    i.glyphicon.glyphicon-lock
-                    | Order Sample
-                li
-                  a#ctl00_ContentPlaceHolder1_LinkButton1.order-link(href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','')")
-                    span
-                      | Bulk
-                      | Order
-            .iwc_prodcutdetail_Continue
-              a#ctl00_ContentPlaceHolder1_lnkContinuewShopping.order-link(href='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$lnkContinuewShopping", "", false, "", "https://www.indianweddingcard.com/Scroll-Invitations.html", false, true))')
-                | Continue
-                | Shopping
-              input#HF_PrevPage(type='hidden', name='ctl00$ContentPlaceHolder1$HF_PrevPage', value='https://www.indianweddingcard.com/Scroll-Invitations.html')
-              input#HF_PrevPagePos(type='hidden', name='ctl00$ContentPlaceHolder1$HF_PrevPagePos')
-              input#HF_ColorGroup(type='hidden', name='ctl00$ContentPlaceHolder1$HF_ColorGroup', value='S301')
-            #ctl00_ContentPlaceHolder1_dvShip.timer_dv
-              .timer_group
-                span.customOrderInTheNext Order sample in the next
-                #timer.timerInner
-                  span
-                    | 24 March 2020 17:00:00
-                  #hours
-                    .timer 03
-                    |                                             HOURS
-                  #minute
-                    .timer 18
-                    |                                             MINS
-                  #second
-                    .timer 32
-                    |                                             SECS
-                .customExpectedDelivery
-                  span.customExpectedDelivery-text and have expected delivery by
-                  span.redTxt.custom_date
-                    | 31 March 2020
-                  small [Shipping cost is on us]
-

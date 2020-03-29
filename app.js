@@ -28,6 +28,7 @@ require("./models/Category");
 
 const mainRouter = require('./routes/main');
 const usersRouter = require('./routes/users');
+const adminRouter = require('./routes/admin')
 
 const app = express();
 
@@ -94,6 +95,7 @@ app.use((req, res, next) => {
 
 app.use('/', mainRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

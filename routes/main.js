@@ -5,7 +5,7 @@ const mainController = require("../controller/mainController");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Express" });
+  res.render("index", { title: "theScrollCard.com" });
 });
 
 router.get("/login", mainController.showLogin);
@@ -23,4 +23,12 @@ router.get("/product", mainController.product);
 router.get("/product/:id", mainController.productId);
 router.post("/paystack/pay", mainController.payStack);
 router.get("/payment_return", mainController.payment_return);
+router.post("/register", mainController.memberRegister);
+router.get("/small_polish_paper_scroll", mainController.polishScroll)
+router.get("/medium_polish_paper_scroll", mainController.mediumPolishScroll)
+router.get("/big_polish_paper_scroll", mainController.bigPolishScroll)
+router.get("/small_velvet_paper_scroll", mainController.smallVelvetScroll)
+router.get("/medium_velvet_paper_scroll", mainController.mediumVelvetScroll)
+router.get("/big_velvet_paper_scroll", mainController.bigVelvetScroll)
+router.get("/luxury_scroll", mainController.luxuryScroll)
 module.exports = router;

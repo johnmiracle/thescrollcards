@@ -6,6 +6,10 @@ const Productschema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  code: {
+    type: String,
+    required: true
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
@@ -22,12 +26,13 @@ const Productschema = new mongoose.Schema({
   material: {
     type: String,
     required: true
-
-    [-]
   },
   imageUrl: {
     type: String,
     required: true
+  },
+  color: {
+    type: String
   },
   description: {
     type: String,

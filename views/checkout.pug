@@ -79,28 +79,28 @@ block content
                     .card-header.card-2
                       p.card-text.text-muted.mt-md-4.mb-2.space
                         | YOUR ORDER 
-                        span.small.text-muted.ml-2.cursor-pointer(href='/cart') EDIT SHOPPING BAG
+                        a.small.text-muted.ml-2.cursor-pointer(href='/cart') EDIT SHOPPING BAG
                       hr.my-2
                     .card-body.pt-0
-                      .row.justify-content-between
+                      .row.pb-3.justify-content-between
                         each product in products
                           .col-auto.col-md-7
                             .media.flex-column.flex-sm-row
-                              img.img-fluid(src=''+product.item.imageUrl, width='30%', height='70')
+                              img.img-fluid(src=''+product.item.imageUrl, width='40%', height='70')
                               .media-body.my-auto
                                 .row
-                                  .col-md-12
-                                    p.mb-0
+                                  .col
+                                    p.mb-4
                                       b #{product.item.name} 
-                                    small.text-muted #{product.item.description}
-                          .pl-0.flex-sm-col.col-auto.my-auto
-                            p.boxed-1= product.qty
-                          .pl-0.flex-sm-col.col-auto.my-auto
+                          .pl-5.flex-sm-col.col-auto.my-auto
+                            p.boxed #{product.qty}
+                              |  Sets
+                          .pl-2.flex-sm-col.col-auto.my-auto
                             p
                               b #{`${product.price}`}
                         hr.my-2
-                      br
-                      br
+                        small.pt-5
+                          b * N.B: Please note each set contains 50 pcs
                       .row
                         .col
                           .row.justify-content-between
@@ -112,7 +112,7 @@ block content
                                 b ₦ 0
                           br
                           .row.justify-content-between
-                            .col-4
+                            .col
                               p
                                 b Total (₦)
                             .flex-sm-col.col-auto

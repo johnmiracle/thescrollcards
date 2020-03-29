@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    .container-fluid
+        .row
+            each product, i in products
+                .column
+                    .card-1
+                        img(src=''+product.imageUrl, alt='' class="product-img")
+                        .card-text
+                            .row
+                                .col-md-6
+                                    span.float-left Code: 
+                                        strong #{product.code} 
+                                .col-md-6
+                                    span.float-right 
+                                        strong NGN #{product.price}
+                        center
+                            .row
+                                .col-md-6
+                                    span
+                                        a.btn.btn-primary(type='submit', role='button' href='/product/'+product._id) View Detail
+                                br
+                                .col-md-6
+                                    span
+                                        a.btn.btn-primary.btn-zoom(type='submit', role='button' href="") Zoom

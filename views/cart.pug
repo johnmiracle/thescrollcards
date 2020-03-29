@@ -27,7 +27,8 @@ block content
                 .product-quantity
                   .btn-group(role='group', aria-label='...')
                     a#minus.btn.btn-danger(type='submit' href='/reducebyone/'+product.item._id) -
-                    a#total.btn.btn(type='submit')=product.qty
+                    a#total.btn.btn(type='submit')=product.qty 
+                      | 
                     a#plus.btn.btn-danger(type='submit' href='/addbyone/'+product.item._id) +
                 .product-removal
                   a.remove-product.float-right(href='/remove/'+product.item._id)

@@ -1,0 +1,86 @@
+#container.container-fluid.content-body.h-100
+  .row.h-100
+    nav.col-md-2.d-none.d-md-block.sidebar
+      .sidebar-sticky
+        ul.nav.flex-column
+          li.nav-item.p-2
+            a(href='/admin')
+              img.sidebar-brand(src='/img/New Phd logo.png', width='100%')
+            a.sidebar-search.text-muted(href='#', data-toggle='modal', data-target='#globalSearchModal')
+              svg(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                use(xlink:href='/dist/feather-sprite.svg#search')
+          li.nav-item
+            .info
+              h5.name
+                | #{user.firstName} #{user.lastName}
+          br
+          li.nav-item
+            a.nav-link(href='/admin/admin-home')
+              i.fa.fa-bar-chart
+                svg.feather.feather-bar-chart(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#bar-chart')
+                | Dashboard
+          h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
+            span Manage
+          li.nav-item
+            a.nav-link(href='/admin/all-products')
+              i.fa.fa-tags
+                svg.fa.fa-tag(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#tag')
+                | Products
+          li.nav-item
+            a.nav-link(href='/admin/all-categories')
+              i.fa.fa-list-alt
+                svg.fa.fa-list-alt(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#tag')
+                | Categories
+          li.nav-item.sidebar-addon
+            a.nav-link(href='/admin/orders')
+              i.fa.fa-first-order
+                svg(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#package')
+                | Orders
+          li.nav-item
+            a.nav-link(href='/admin/customers')
+              i.fa.fa-users
+                svg(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#users')
+                | Customers
+          li.nav-item.sidebar-addon
+            a.nav-link.sidebar-link(href='/admin/users')
+              i.fa.fa-user
+                svg(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#user')
+                | Users
+            a.sidebar-link-addon.text-muted(href='/admin/user/new')
+              svg.feather.feather-plus(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                use(xlink:href='/dist/feather-sprite.svg#plus')
+        h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
+          span Settings
+        ul.nav.flex-column.mb-2
+          li.nav-item
+            a.nav-link(href='/admin/settings')
+              i.fa.fa-sliders
+                svg.feather.feather-sliders(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#sliders')
+                | General settings
+          li.nav-item
+            a.nav-link(href='/admin/settings/menu')
+              i.fa.fa-bars
+                svg(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#menu')
+                | Menu
+          li.nav-item
+            a.nav-link(href='/admin/settings/pages')
+              i.fa.fa-file-text
+                svg.feather.feather-file-text(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#file-text')
+                | Static pages
+          li.nav-item
+            a.nav-link(href='/admin/logout')
+              i.fa.fa-sign-out
+                svg(width='16', height='16', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                  use(xlink:href='/dist/feather-sprite.svg#menu')
+                | Logout
+    main.col-md-9.ml-sm-auto.col-lg-10.px-4(role='main')
+      block content
