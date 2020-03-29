@@ -72,12 +72,17 @@ exports.showLogin = (req, res, next) => {
   res.render("login");
 };
 
+<<<<<<< HEAD
 exports.polishScroll = async (req, res, next) => {
   const products = await Product.find({ name: "Polish Paper Scrolls",
     size: "small"
   }).populate("category");
   console.log(products);
   res.render("products", { products });
+=======
+exports.polishScroll = (req, res, next) => {
+  res.render("products");
+>>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
 };
 
 exports.mediumPolishScroll = (req, res, next) => {
