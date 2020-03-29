@@ -72,41 +72,63 @@ exports.showLogin = (req, res, next) => {
   res.render("login");
 };
 
-<<<<<<< HEAD
 exports.polishScroll = async (req, res, next) => {
-  const products = await Product.find({ name: "Polish Paper Scrolls",
+  const products = await Product.find({ name: "Polish Paper Scrolls", size: "small" }).populate("category");
+  console.log(products);
+  res.render("products", { products });
+};
+
+exports.mediumPolishScroll = async (req, res, next) => {
+  const products = await Product.find({
+    name: "Polish Paper Scrolls",
+    size: "medium"
+  }).populate("category");
+  console.log(products);
+  res.render("products", { products });
+};
+
+exports.bigPolishScroll = async (req, res, next) => {
+  const products = await Product.find({
+    name: "Polish Paper Scrolls",
+    size: "big"
+  }).populate("category");
+  console.log(products);
+  res.render("products", { products });
+};
+
+exports.smallVelvetScroll = async (req, res, next) => {
+  const products = await Product.find({
+    name: "Velvet Scrolls",
     size: "small"
   }).populate("category");
   console.log(products);
   res.render("products", { products });
-=======
-exports.polishScroll = (req, res, next) => {
-  res.render("products");
->>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
 };
 
-exports.mediumPolishScroll = (req, res, next) => {
-  res.render("products");
+exports.mediumVelvetScroll = async (req, res, next) => {
+  const products = await Product.find({
+    name: "Velvet Scrolls",
+    size: "medium"
+  }).populate("category");
+  console.log(products);
+  res.render("products", { products });
 };
 
-exports.bigPolishScroll = (req, res, next) => {
-  res.render("products");
+exports.bigVelvetScroll = async (req, res, next) => {
+  const products = await Product.find({
+    name: "Velvet Scrolls",
+    size: "big"
+  }).populate("category");
+  console.log(products);
+  res.render("products", { products });
 };
 
-exports.smallVelvetScroll = (req, res, next) => {
-  res.render("products");
-};
-
-exports.mediumVelvetScroll = (req, res, next) => {
-  res.render("products");
-};
-
-exports.bigVelvetScroll = (req, res, next) => {
-  res.render("products");
-};
-
-exports.luxuryScroll = (req, res, next) => {
-  res.render("products");
+exports.luxuryScroll = async (req, res, next) => {
+  const products = await Product.find({
+    name: "Luxury Scrolls"
+  }).populate("category");
+  console.log(products);
+  res.render("products", { products });
 };
 
 exports.login = (req, res, next) => {
@@ -115,10 +137,7 @@ exports.login = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash(
-        "danger",
-        "Username & Password combination doesn't match any of our records"
-      );
+      req.flash("danger", "Username & Password combination doesn't match any of our records");
       return res.redirect("/login");
     }
 
@@ -281,10 +300,7 @@ exports.payStack = (req, res, next) => {
     })
     .catch(function(error) {
       // handle error
-      req.flash(
-        "Danger",
-        "There was an error processing your payment. You have not been changed and can try again."
-      );
+      req.flash("Danger", "There was an error processing your payment. You have not been changed and can try again.");
       res.redirect("/checkout");
       console.log(error);
       return;

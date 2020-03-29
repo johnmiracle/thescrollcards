@@ -535,17 +535,12 @@ p {
 /* ==================================*/
 /* ==================================*/
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
 /* ==================================*/
 /* ==================================*/
 /* =====product page section=========*/
 /* ==================================*/
 /* ==================================*/
 
-<<<<<<< HEAD
 .card-1 {
   border: 1px solid rgb(194, 191, 191);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -557,18 +552,8 @@ p {
   margin-bottom: 20px;
 }
 
-.btn-zoom{
-  padding: 6px 27px
-=======
-.card img {
-  height: 100%;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.card a {
-  display: inline !important;
->>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
+.btn-zoom {
+  padding: 6px 27px;
 }
 
 /* Float four columns side by side */
@@ -578,14 +563,10 @@ p {
   padding: 0 20px;
 }
 
-<<<<<<< HEAD
 .product-img {
   max-width: 100%;
 }
 
-
-=======
->>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
 /* Remove extra left and right margins, due to padding */
 .row {
   margin: 0 -5px;
@@ -608,23 +589,12 @@ p {
 }
 
 /* Style the counter cards */
-<<<<<<< HEAD
 .card-1 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 8px;
   background-color: #f1f1f1;
 }
 
-=======
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  /* text-align: center; */
-  background-color: #f1f1f1;
-}
-
-
->>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
 /* ==================================*/
 /* ==================================*/
 /* =======project start section======*/
@@ -911,13 +881,10 @@ h4 {
 .errorBox {
   font-size: 15px;
   color: red;
-<<<<<<< HEAD
 }
 
 .checkbox {
   font-size: 50px !important;
-=======
->>>>>>> a6c10eefaf9a611aa6d54fefb1ad455b143d4e14
 }
 
 .checkbox {
