@@ -4,80 +4,99 @@ include ./mixins/_flash-messages
 
 block content
   section
-   .container.product-blk
-    .row
-      +flashMessages()
-      .col-md-7.card-box
-        center
-          img(src=''+product.imageUrl, alt='', width='70%', height='300')
-      .col-md-1
-      .col-md-4.card-detail
-        .cart
-          h5.MarT0
-            span Code: 
-            span#lblCode #{product.code}
-          h5#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
-            span Price: 
-            span NGN #{product.price}
-          .form-group
-            input#priceHidden.form-control(type='hidden', name='priceHidden', value='')
-            b Product description:
-            br
-            span #{product.description}
-              br
-              br
-              // -------------------------Price Based on Quantity Section---------------------------------------
-              // -------------------------Price Based on Quantity Section---------------------------------------
-              h3#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
-              p.ptimedays
-                span.plabel Production time for Bulk Order (Days): 
-                br
-                span Regular: 
-                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 6
-                | &nbsp;to
-                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 10
-                span Rush: 
-                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 1
-                |                                     to
-                span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 3
-              p
-                span.plabel Weight:
-                span.weight 235
-                | &nbsp;(in Grams)
-              p
-                span.plabel Size:
-                span.Size
-                  | Scroll: 8.5x11, Case: 12.75x2.0x2.0 +
-                  | Mailing Box Env
-                  | (in Inches)
-              p
-                span.plabel Orientation:
-                  |  Portrait (Vertical)
-              p
-                span.plabel
-                  | A Low Quantity Order Card: 
-                  i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom', title='', data-original-title='It means BULK ORDER can be placed in quantity as low as 10 cards and then in multiples of 5. An Extra charge will be applicable. Put qty. required in bulk order to find out about the extra charge.')
-            .iwc_product_Menu
-              ul
-                li
-                  a(href='')
-                    i.glyphicon.glyphicon-lock
-                    | Order Sample
-                li
-                  a.btn.btn-primary(href="")
-                    span
-                      | Bulk
-                      | Order
-            .iwc_prodcutdetail_Continue
-              a(href="")
-                | Continue Shopping
-              small [Shipping cost is on us]
-            if user
-              a.btn.btn-primary(type='submit', role='button' href='/addtocart/'+product._id) Add to Cart
-              br
-              br
-            else
-              a.btn.btn-primary(type='submit', role='button' href='/addtocart/'+product._id) Add to Cart
-              br
-              br
-              a.btn.btn-warning(href='/register') Signup to begin buying
+    .container.product-blk
+      .row
+        +flashMessages()
+        .col-md-7.card-box
+          center
+            img(src=''+product.imageUrl, alt='', width='70%', height='300')
+        .col-md-1
+        .col-md-4.card-detail
+          .cart
+            h5.MarT0
+              span Code: 
+              span#lblCode #{product.code}
+            h5#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
+              span Price: 
+              span NGN #{product.price}
+            .form-group
+              h3
+                p.ptimedays
+                  span.plabel Production time for Bulk Order (Days): 
+                  br
+                  span Regular: 
+                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 6
+                  | &nbsp;to
+                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 10
+                  span Rush: 
+                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 1
+                  |                                     to
+                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 3
+                p
+                  span.plabel Weight:
+                  span.weight 235
+                  | &nbsp;(in Grams)
+                p
+                  span.plabel Size:
+                  span.Size
+                    | Scroll: 8.5x11, Case: 12.75x2.0x2.0 +
+                    | Mailing Box Env
+                    | (in Inches)
+                p
+                  span.plabel Orientation:
+                    |  Portrait (Vertical)
+                p
+                  span.plabel
+                    | A Low Quantity Order Card: 
+                    i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom', title='', data-original-title='It means BULK ORDER can be placed in quantity as low as 10 cards and then in multiples of 5. An Extra charge will be applicable. Put qty. required in bulk order to find out about the extra charge.')
+                  br
+                  br
+                  span.pt-5
+                    b * N.B: Please note each set contains 50 pcs
+              .iwc_product_Menu
+                ul
+                  li
+                    a.btn.btn-primary.sample-btn(type='submit', role='button' href='')
+                      span
+                        | Order Sample
+                  li
+                    a.btn.btn-primary.order-btn(type='submit', role='button' href='/addtocart/'+product._id)
+                      span
+                        | Bulk Order
+              .iwc_prodcutdetail_Continue
+                center
+                  a(href="")
+                    | Continue Shopping
+                  br 
+                  br 
+                  small [Shipping cost is on us]
+      .container-fluid.section-detail
+        #fbproddet.panel.panel-default
+          .panel-heading
+            h2.Mar0 Product Details
+          .panel-body
+            ul
+              li.description
+                h4 Description: 
+                p
+                  span.description-span
+                    | The scroll has hot foil printed golden border on both sides. It is contained in a beautiful handcrafted plastic container with nice designer carvings giving a look of a perfect royal invitation. It goes in to a hexagonal box, which too has hot foil border matching to the main scroll.
+              li.paper
+                h4 Paper:
+                p
+                  span.paper-span
+                    | Scroll is in Shimmery translucent cream wooly paper (80gsm) with golden bar and golden zari tassel and is contained in golden finish handcrafted plastic case; Matt Finish golden Metallic paper (300gsm) for outer mailing box.
+              li.addonCard
+                h4 Add on Cards:
+                p
+                  span.addon-span
+                    | Add on card paper will be matching to chosen card in terms of paper and design.
+              li.style
+                h4 Style:
+                p
+                  span.style-span
+                    a(href='') Box Scrolls Card
+                    | , 
+                    a(href='') Cindrella Theme Scroll
+                    | , 
+                    a(href='') Highend Scrolls

@@ -19,10 +19,10 @@ block content
                       hr.my-0
                     .card-body
                       .row.justify-content-between
-                        .col-auto.mt-0
+                        .col-md-6.mt-0
                           p
                             b #{user.address}
-                        .col-auto
+                        .col-md-6
                           p
                             b #{user.email}
                       form(method='POST', action='/paystack/pay')
