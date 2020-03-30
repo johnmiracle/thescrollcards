@@ -77,11 +77,14 @@ block content
                 li.list-group-item
                     strong.text-info Products ordered
                 li.list-group-item
-                    each item, index in orders
+                   each data in orders
                         ul.list-group
-                            li.list-group-item #{index.name}
-                            li.list-group-item  #{index.price}
-                            li.list-group-item #{index.qty} 
+                            li.list-group-item #{data.item.name}
+                            li.list-group-item  #{data.item.price}
+                            li.list-group-item #{data.qty} 
+                            li.list-group-item 
+                                img.d-block.w-100(src=''+data.item.imageUrl, alt='', width='60%', height='300')
+                            li.list-group-item  #{data.item.description}
                 li.list-group-item
                     strong.text-info
                         b Total Price 
