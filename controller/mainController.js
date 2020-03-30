@@ -73,7 +73,10 @@ exports.showLogin = (req, res, next) => {
 };
 
 exports.polishScroll = async (req, res, next) => {
-  const products = await Product.find({ name: "Polish Paper Scrolls", size: "small" }).populate("category");
+  const products = await Product.find({
+    name: "Polish Paper Scrolls",
+    size: "small"
+  }).populate("category");
   console.log(products);
   res.render("products", { products });
 };
@@ -137,7 +140,10 @@ exports.login = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash("danger", "Username & Password combination doesn't match any of our records");
+      req.flash(
+        "danger",
+        "Username & Password combination doesn't match any of our records"
+      );
       return res.redirect("/login");
     }
 
@@ -256,6 +262,7 @@ exports.payStack = (req, res, next) => {
       Authorization: process.env.paystack_secret_key
     },
     data: {
+      callback_url: "http://localhost:3001/payment_return",
       amount: cart.totalPrice * 100,
       email: req.body.shipEmail,
       first_name: req.body.shipFirstname,
@@ -300,7 +307,10 @@ exports.payStack = (req, res, next) => {
     })
     .catch(function(error) {
       // handle error
-      req.flash("Danger", "There was an error processing your payment. You have not been changed and can try again.");
+      req.flash(
+        "Danger",
+        "There was an error processing your payment. You have not been changed and can try again."
+      );
       res.redirect("/checkout");
       console.log(error);
       return;
@@ -341,7 +351,6 @@ exports.payment_return = (req, res, next) => {
         // set cart to empty
         req.session.cart = null;
         res.render("order_successful", { reference });
-        return;
       });
     })
     .catch(function(error) {
