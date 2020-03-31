@@ -367,23 +367,6 @@ a {
 
 /* ==================================*/
 /* ==================================*/
-/* =====Product start section=========*/
-/* ==================================*/
-/* ==================================*/
-.product-blk {
-  margin-top: 50px;
-}
-.product-blk .btn-lg {
-  font-size: 15px;
-  font-family: Nunito, sans-serif;
-}
-
-.card-box img {
-  margin-top: 90px;
-}
-
-/* ==================================*/
-/* ==================================*/
 /* ======CheckOut start section======*/
 /* ==================================*/
 /* ==================================*/
@@ -556,6 +539,16 @@ p {
   margin-bottom: 20px;
 }
 
+.card-text ul {
+  padding: 0;
+  list-style-type: none;
+  display: inline;
+}
+
+.column-apart {
+  padding: 25px 0px !important;
+}
+
 .btn-zoom {
   padding: 6px 27px;
 }
@@ -593,6 +586,10 @@ p {
 
   .column-apart span a {
     margin-bottom: 15px;
+  }
+
+  .column-apart {
+    padding: 15px 0px;
   }
 
   .shopping-cart h3 {
@@ -724,14 +721,38 @@ table.table td .add {
   margin-top: 30px;
   text-align: center;
 }
+.iwc_product_Menu ul {
+  padding: 0;
+  list-style-type: none;
+}
 
 .sample-btn {
-  /* padding: 10px 80px !important;
-  text-align: center; */
+  padding: 10px 110px;
+  background: red;
+  border: 1px solid red;
+}
+
+.sample-btn:hover {
+  background: #ee5b5b;
+  border: 1px solid #ee5b5b;
+  box-shadow: 0px 1px 8px #ee5b5b;
+  -webkit-transition: background 1.2s ease;
+  -moz-transition: background 1.2s ease;
+  -ms-transition: background 1.2s ease;
+  -o-transition: background 1.2s ease;
+  transition: background 1.2s ease;
 }
 
 .order-btn {
-  /* padding: 10px 100px; */
+  padding: 10px 120px !important;
+}
+
+.order-btn:hover {
+  -webkit-transition: background 1.2s ease;
+  -moz-transition: background 1.2s ease;
+  -ms-transition: background 1.2s ease;
+  -o-transition: background 1.2s ease;
+  transition: background 1.2s ease;
 }
 
 .panel-heading {
@@ -743,7 +764,26 @@ table.table td .add {
 .panel-body ul {
   list-style: none;
   margin-top: 14px;
-  width: 95%;
+  width: 90%;
+  margin: auto;
+  padding: 0;
+  list-style-type: none;
+}
+
+.product-blk {
+  margin-top: 50px;
+}
+.product-blk .btn-lg {
+  font-size: 15px;
+  font-family: Nunito, sans-serif;
+}
+
+.card-box img {
+  margin-top: 90px;
+}
+
+.card-box {
+  border: 1px solid rgb(233, 231, 231);
 }
 
 .panel-body h4 {
@@ -2206,17 +2246,22 @@ button.delete {
   .cd-gallery > li:nth-of-type(2n) {
     margin-right: 0;
   }
+}
 
+@media only screen and (max-width: 768px) {
+  .iwc_product_Menu ul {
+    padding: 0;
+    list-style-type: none;
+  }
   .sample-btn {
-    padding: 10px 40px;
-    margin-right: 100px !important;
+    padding: 10px 40px !important;
   }
 
   .order-btn {
-    padding: 10px 50px;
-    margin-right: 0px !important;
+    padding: 10px 50px !important;
   }
 }
+
 @media only screen and (min-width: 1048px) {
   .cd-item-wrapper li.move-left,
   .cd-item-wrapper li.move-right {
@@ -2255,6 +2300,16 @@ button.delete {
     transform: translateX(97%) scale(0.75);
   }
 }
+@media only screen and (max-width: 1024px) {
+  .iwc_product_Menu ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  .sample-btn {
+    padding: 10px 70px;
+  }
+}
+
 @media only screen and (max-width: 425px) {
   .blk_2 .blk-text {
     margin-left: 1px;
@@ -2344,15 +2399,11 @@ button.delete {
   }
 
   .sample-btn {
-    padding: 10px 50px;
-    margin-left: 30px;
-    text-align: center;
+    padding: 10px 50px !important;
   }
 
   .order-btn {
-    padding: 10px 60px;
-    margin-left: 30px;
-    text-align: center;
+    padding: 10px 60px !important;
   }
 }
 /* Make adjustments for tablet */
@@ -2439,17 +2490,27 @@ button.delete {
   }
 }
 
-@media screen and (width: 320px) {
+@media screen and (max-width: 375px) {
   .sample-btn {
-    padding: 10px 50px !important;
-    /* margin-left: 30px; */
-    text-align: center !important;
+    padding: 10px 80px !important;
   }
 
   .order-btn {
-    padding: 10px 60px;
-    /* margin-left: 30px; */
-    text-align: center;
+    padding: 10px 90px !important;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .sample-btn {
+    padding: 10px 50px !important;
+  }
+
+  .order-btn {
+    padding: 10px 60px !important;
+  }
+
+  .card-box img {
+    width: 50% !important;
   }
 }
 
@@ -2458,4 +2519,3 @@ button.delete {
     padding-left: 0;
   }
 }
-/*# sourceMappingURL=style.css.map */

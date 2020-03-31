@@ -10,7 +10,10 @@ const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const cors = require("cors");
+const moment = require('moment')
 
+
+const datetime = moment().format("YYYY-MM-DDThh:mm:ss.ms");
 // .env setup
 require("dotenv").config();
 
@@ -64,6 +67,7 @@ app.use(
 app.use(require("connect-flash")());
 app.use(function(req, res, next) {
   res.locals.flashes = req.flash();
+  res.locals.moment = require("moment");
   next();
 });
 

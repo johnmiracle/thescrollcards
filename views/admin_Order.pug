@@ -110,11 +110,30 @@ block content
           li.list-group-item
             strong.text-info Products ordered
           li.list-group-item
-            | #{result.orderProducts}
-            | &gt; &nbsp;
-            span.text-warning  Options: 
-            | ( )
-            .float-right
-              b #{result.orderProducts.totalPrice}
+            .row
+              each data in orders
+                .col-md-4
+                  ul.list-group
+                    li.list-group-item 
+                      img.d-block.w-100(src=''+data.item.imageUrl, alt='', width='0%', height='')
+                    li.list-group-item
+                      b Product: 
+                        span.float-right #{data.item.name}
+                    li.list-group-item 
+                      b Quantity: 
+                        span.float-right #{data.qty} Set
+                    li.list-group-item  
+                      b Description: 
+                        span.float-right #{data.item.description}
+                    li.list-group-item 
+                      b Color: 
+                        span.float-right #{data.item.color}
+                    li.list-group-item 
+                      b Size: 
+                        span.float-right #{data.item.size}
+          li.list-group-item
+            strong.text-info
+              b Total Price 
+              span.float-right #{result.orderProducts.totalPrice}
         input#order_id(type='hidden', value='5e3f02b6aa056411043e9f88')
     br

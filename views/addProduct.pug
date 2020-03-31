@@ -28,14 +28,20 @@ block content
                       option(value=category.id)= category.name
               .form-group
                 label(for='Material') Material
-                input#description.form-control(type='text', name='material', required='')
+                select.form-control(name='material', required='')
+                  option(selected='')
+                  option(value='Paper') Paper
+                  option(value='Fabric') Fabric
+              .form-group
+                label(for='Material Description') Material Description
+                textarea#description.form-control(type='text', name='materialDescription', required='', rows='5')
               .form-group
                 label(for='Size') Size
                 select.form-control(name='size', required='')
                   option(selected='')
-                  option(value='small') Small
-                  option(value='medium') Medium
-                  option(value='big') Big
+                  option(value='Small') Small
+                  option(value='Medium') Medium
+                  option(value='Big') Big
               .form-group
                 label(for='Price') Price
                 input#price.form-control(type='text', name='price', required='')
@@ -46,8 +52,8 @@ block content
                 label(for='Stock') In Stock
                 select.form-control(name='inStock', required='')
                   option(selected='')
-                  option(value='yes') Yes
-                  option(value='no') No
+                  option(value='Yes') Yes
+                  option(value='No') No
               .form-group
                 label(for='Description') Description
                 textarea#description.form-control(type='text', name='description', required='', rows='5')

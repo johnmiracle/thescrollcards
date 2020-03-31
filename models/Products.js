@@ -26,6 +26,10 @@ const Productschema = new mongoose.Schema({
     type: String,
     required: true
   },
+  materialDescription: {
+    type: String,
+    required: true
+  },
   imageUrl: {
     type: String,
     required: true

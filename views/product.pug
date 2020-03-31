@@ -24,16 +24,16 @@ block content
                 p.ptimedays
                   span.plabel Production time for Bulk Order (Days): 
                   br
+                  br
                   span Regular: 
-                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 6
-                  | &nbsp;to
-                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 10
+                  span 6
+                  | &nbsp;to 10
+                  br
+                  br
                   span Rush: 
-                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 1
-                  |                                     to
-                  span(title='It is the time needed by us to make the cards and send to you. Delivery time is extra depending on shipping destination. India Delivery takes 1-3 days International deliveries can take between 3 days to 8 days.') 3
+                  span 1 to 3
                 p
-                  span.plabel Weight:
+                  span.plabel Weight: 
                   span.weight 235
                   | &nbsp;(in Grams)
                 p
@@ -46,9 +46,12 @@ block content
                   span.plabel Orientation:
                     |  Portrait (Vertical)
                 p
+                  span.plabel Color:
+                    |  #{product.color || "No Color for this item."}
+                p
                   span.plabel
                     | A Low Quantity Order Card: 
-                    i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom', title='', data-original-title='It means BULK ORDER can be placed in quantity as low as 10 cards and then in multiples of 5. An Extra charge will be applicable. Put qty. required in bulk order to find out about the extra charge.')
+                    i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom')
                   br
                   br
                   span.pt-5
@@ -70,7 +73,7 @@ block content
                   br 
                   br 
                   small [Shipping cost is on us]
-      .container-fluid.section-detail
+    .container.section-detail
         #fbproddet.panel.panel-default
           .panel-heading
             h2.Mar0 Product Details
@@ -80,12 +83,12 @@ block content
                 h4 Description: 
                 p
                   span.description-span
-                    | The scroll has hot foil printed golden border on both sides. It is contained in a beautiful handcrafted plastic container with nice designer carvings giving a look of a perfect royal invitation. It goes in to a hexagonal box, which too has hot foil border matching to the main scroll.
+                    | #{product.description}
               li.paper
-                h4 Paper:
+                h4 #{product.material}:
                 p
                   span.paper-span
-                    | Scroll is in Shimmery translucent cream wooly paper (80gsm) with golden bar and golden zari tassel and is contained in golden finish handcrafted plastic case; Matt Finish golden Metallic paper (300gsm) for outer mailing box.
+                    | #{product.materialDescription || 'No material description for this item.'}
               li.addonCard
                 h4 Add on Cards:
                 p

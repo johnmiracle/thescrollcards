@@ -77,14 +77,27 @@ block content
                 li.list-group-item
                     strong.text-info Products ordered
                 li.list-group-item
-                   each data in orders
-                        ul.list-group
-                            li.list-group-item #{data.item.name}
-                            li.list-group-item  #{data.item.price}
-                            li.list-group-item #{data.qty} 
-                            li.list-group-item 
-                                img.d-block.w-100(src=''+data.item.imageUrl, alt='', width='60%', height='300')
-                            li.list-group-item  #{data.item.description}
+                    .row
+                        each data in orders
+                            .col-md-4
+                                ul.list-group
+                                    li.list-group-item 
+                                        img.d-block.w-100(src=''+data.item.imageUrl, alt='', width='0%', height='')
+                                    li.list-group-item
+                                        b Product: 
+                                            span.float-right #{data.item.name}
+                                    li.list-group-item 
+                                        b Quantity: 
+                                            span.float-right #{data.qty} Set
+                                    li.list-group-item  
+                                        b Description: 
+                                            span.float-right #{data.item.description}
+                                    li.list-group-item 
+                                        b Color: 
+                                            span.float-right #{data.item.color}
+                                    li.list-group-item 
+                                        b Size: 
+                                            span.float-right #{data.item.size}
                 li.list-group-item
                     strong.text-info
                         b Total Price 

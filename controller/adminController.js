@@ -4,6 +4,7 @@ const Category = require("../models/Category");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Cart = require("../models/cart");
 const Order = mongoose.model("Order");
 const { check, validationResult } = require("express-validator");
 const uploadFile = require("../handlers/uploadfile");
@@ -53,6 +54,7 @@ exports.addproduct = (req, res, next) => {
       product.category = req.body.category;
       product.size = req.body.size;
       product.material = req.body.material;
+      product.materialDescription = req.body.materialDescription;
       product.color = req.body.color;
       product.price = req.body.price;
       product.description = req.body.description;
@@ -63,7 +65,7 @@ exports.addproduct = (req, res, next) => {
         // handle errors
         if (err) {
           req.flash("danger", err.message);
-          console.log(err)
+          console.log(err);
           res.redirect("/admin/add-product");
         } else {
           // no errors, return success message
@@ -303,8 +305,19 @@ exports.all_Orders = (req, res, next) => {
 };
 
 exports.view_Order = async (req, res, next) => {
-  const result = await Order.findById(req.params.id).populate("user");
-  res.render("admin_Order", { result });
+  const result = await Order.findById(req.params.id);
+
+  Order.find({ _id: req.params.id }, function(err, orders) {
+    let data = [];
+    data.length = 0;
+    orders.forEach(function(order) {
+      const orderProducts = new Cart(order.orderProducts);
+      order.item = orderProducts.generateArray();
+      data = order.item;
+      console.log(data);
+    });
+    res.render("admin_Order", { result, orders: data });
+  });
 };
 
 exports.order_update = (req, res) => {
