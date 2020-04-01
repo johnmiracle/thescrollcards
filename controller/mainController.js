@@ -72,12 +72,30 @@ exports.showLogin = (req, res, next) => {
   res.render("login");
 };
 
-exports.polishScroll = async (req, res, next) => {
+exports.polishScroll = async (res, req, next) => {
+  const products = await Product.find({ name: "Polish Paper Scrolls" })
+    .populate("category")
+    .then(response => {
+      res.render("products", { products });
+    })
+    .catch(function(error) {
+      // handle error
+      res.redirect("");
+      console.log(error);
+      return;
+    });
+};
+
+exports.velvetScroll = async (res, req, next) => {
+  const products = await Product.find({ name: "Velvet Scrolls" }).populate("category");
+  res.render("products", { products });
+};
+
+exports.smallPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
     size: "small"
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
@@ -95,7 +113,6 @@ exports.bigPolishScroll = async (req, res, next) => {
     name: "Polish Paper Scrolls",
     size: "big"
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
@@ -104,7 +121,6 @@ exports.smallVelvetScroll = async (req, res, next) => {
     name: "Velvet Scrolls",
     size: "small"
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
@@ -113,7 +129,6 @@ exports.mediumVelvetScroll = async (req, res, next) => {
     name: "Velvet Scrolls",
     size: "medium"
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
@@ -130,7 +145,6 @@ exports.luxuryScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Luxury Scrolls"
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
@@ -140,10 +154,7 @@ exports.login = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash(
-        "danger",
-        "Username & Password combination doesn't match any of our records"
-      );
+      req.flash("danger", "Username & Password combination doesn't match any of our records");
       return res.redirect("/login");
     }
 
@@ -307,10 +318,7 @@ exports.payStack = (req, res, next) => {
     })
     .catch(function(error) {
       // handle error
-      req.flash(
-        "Danger",
-        "There was an error processing your payment. You have not been changed and can try again."
-      );
+      req.flash("Danger", "There was an error processing your payment. You have not been changed and can try again.");
       res.redirect("/checkout");
       console.log(error);
       return;
