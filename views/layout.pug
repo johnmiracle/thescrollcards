@@ -2,7 +2,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
-  title Phd
+  title theScrollCard
   meta(content='We are a forward thinking prints+designs company which specializes in creating strong brands for companies with interest in cutting-edge excellence.', name='description')
   meta(content='Profound House of Designs', name='PHD')
   meta(content='Profound cards, prints, designs,customized cards, phd logo,invitation cards, wedding cards,business cards, phdng.com, profound house of designs, about phd,', name='keywords')
@@ -17,6 +17,9 @@ head
   link(rel='stylesheet', href='/stylesheets/style.css', type='text/css')
 
 body
+  //- Back to top Button
+  button#myBtn(onclick='topFunction()', title='Go to top') Top
+  
   section
     .container
       nav.navbar.navbar-expand-lg.navbar-light
@@ -58,12 +61,6 @@ body
                       if session.cart
                         span.badge.badge-primary= session.cart.totalQty
               
-  //
-    -------------------------
-    -----------------------------
-    ------Block 1 ends here------
-    -----------------------------
-    --------------------------
   //
     -------------------------
     -----------------------------
@@ -117,12 +114,6 @@ body
                   a.dropdown-item(href='/big_velvet_paper_scroll') Big Velvet Paper Scroll
             li.nav-item
               a(href='/luxury_scroll') Luxury Scroll
-  //
-    -------------------------
-    -----------------------------
-    ----Section Nav ends here----
-    -----------------------------
-    --------------------------
 
   block content
 
@@ -173,15 +164,15 @@ body
         .social_footer.bounce.col-md-6
           ul
             li
-              a(href='#')
+              a(href='https://www.facebook.com/phd_weddingshop', target="_blank")
                 span
                   i.fa.fa-facebook.footer-social
             li
-              a(href='#')
+              a(href='https://www.twitter.com/phd_weddingshop', target="_blank")
                 span
                   i.fa.fa-twitter.footer-social
             li
-              a(href='#')
+              a(href='https://www.instagram.com/phd_weddingshop', target="_blank")
                 span
                   i.fa.fa-instagram.footer-social
             li
@@ -198,5 +189,4 @@ body
   script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
   script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
-  //- script(type='text/javascript', src='assets/plugins/back-to-top.js')
   script(src='../javascripts/main.js')

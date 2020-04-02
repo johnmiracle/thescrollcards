@@ -155,7 +155,7 @@ exports.adminRegister = async (req, res, next) => {
     });
     bcrypt.hash(user.password, 10, (err, hash) => {
       user.password = hash;
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           console.log(err);
         } else {
@@ -186,7 +186,7 @@ exports.products = async (req, res) => {
 };
 
 exports.viewProductEdit = (req, res, next) => {
-  Product.findById(req.params.id, function(err, product) {
+  Product.findById(req.params.id, function (err, product) {
     if (err) return console.log(err);
     res.render("admin-product-edit", { product });
   });
@@ -201,16 +201,12 @@ exports.productEdit = (req, res, next) => {
 
   let query = { _id: req.params.id };
 
-  Product.update(query, product, function(err) {
+  Product.update(query, product, function (err) {
     // handle errors
     if (err) {
       req.flash("danger", err.message);
       console.log(err);
       res.redirect("/admin/all-products");
-    }
-    if (product.Product === req.body) {
-      res.redirect("/admin/all-products");
-      req.flash("Success", "Product has been updated Successfully");
     } else {
       // no errors, return success message
       req.flash("Success", "Product has been updated Successfully");
@@ -222,7 +218,7 @@ exports.productEdit = (req, res, next) => {
 
 exports.product_delete = (req, res, next) => {
   let query = { _id: req.params.id };
-  Product.findByIdAndRemove(query, function(err) {
+  Product.findByIdAndRemove(query, function (err) {
     if (err) {
       res.redirect("/admin/all-products");
       req.flash("Error", err.message);
@@ -243,7 +239,7 @@ exports.viewCategory = (req, res, next) => {
 };
 
 exports.viewCategoryEdit = (req, res, next) => {
-  Category.findById(req.params.id, function(err, category) {
+  Category.findById(req.params.id, function (err, category) {
     if (err) return console.log(err);
     res.render("admin-category-edit", { category });
   });
@@ -255,7 +251,7 @@ exports.categoryEdit = (req, res, next) => {
   category.description = req.body.description;
 
   let query = { _id: req.params.id };
-  Category.update(query, category, function(err) {
+  Category.update(query, category, function (err) {
     // handle errors
     if (err) {
       req.flash("danger", err.message);
@@ -274,7 +270,7 @@ exports.categoryEdit = (req, res, next) => {
 
 exports.category_delete = (req, res, next) => {
   let query = { _id: req.params.id };
-  Category.findByIdAndRemove(query, function(err) {
+  Category.findByIdAndRemove(query, function (err) {
     if (err) {
       res.redirect("/admin/all-categories");
       req.flash("Error", err.message);
@@ -307,10 +303,10 @@ exports.all_Orders = (req, res, next) => {
 exports.view_Order = async (req, res, next) => {
   const result = await Order.findById(req.params.id);
 
-  Order.find({ _id: req.params.id }, function(err, orders) {
+  Order.find({ _id: req.params.id }, function (err, orders) {
     let data = [];
     data.length = 0;
-    orders.forEach(function(order) {
+    orders.forEach(function (order) {
       const orderProducts = new Cart(order.orderProducts);
       order.item = orderProducts.generateArray();
       data = order.item;
@@ -326,7 +322,7 @@ exports.order_update = (req, res) => {
 
   let query = { _id: req.params.id };
 
-  Order.update(query, order, function(err) {
+  Order.update(query, order, function (err) {
     // handle errors
     if (err) {
       req.flash("danger", err.message);
@@ -343,7 +339,7 @@ exports.order_update = (req, res) => {
 
 exports.order_delete = (req, res, next) => {
   let query = { _id: req.params.id };
-  Order.findByIdAndRemove(query, function(err) {
+  Order.findByIdAndRemove(query, function (err) {
     if (err) {
       res.redirect("/admin/orders");
       req.flash("Error", err.message);

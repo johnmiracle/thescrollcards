@@ -10,92 +10,92 @@ block content
         .col-md-7.card-box
           center
             img(src=''+product.imageUrl, alt='', width='70%', height='300')
-        .col-md-1
-        .col-md-4.card-detail
-          .cart
-            h5.MarT0
-              span Code: 
-              span#lblCode #{product.code}
-            h5#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
-              span Price: 
-              span NGN #{product.price}
-            .form-group
-              h3
-                p.ptimedays
-                  span.plabel Production time for Bulk Order (Days): 
-                  br
-                  br
-                  span Regular: 
-                  span 6
-                  | &nbsp;to 10
-                  br
-                  br
-                  span Rush: 
-                  span 1 to 3
-                p
-                  span.plabel Weight: 
-                  span.weight 235
-                  | &nbsp;(in Grams)
-                p
-                  span.plabel Size:
-                  span.Size
-                    | Scroll: 8.5x11, Case: 12.75x2.0x2.0 +
-                    | Mailing Box Env
-                    | (in Inches)
-                p
-                  span.plabel Orientation:
-                    |  Portrait (Vertical)
-                p
-                  span.plabel Color:
-                    |  #{product.color || "No Color for this item."}
-                p
-                  span.plabel
-                    | A Low Quantity Order Card: 
-                    i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom')
-                  br
-                  br
-                  span.pt-5
-                    b * N.B: Please note each set contains 50 pcs
-              .iwc_product_Menu
-                ul
-                  li
-                    a.btn.btn-primary.sample-btn(type='submit', role='button' href='')
-                      span
-                        | Order Sample
-                  li
-                    a.btn.btn-primary.order-btn(type='submit', role='button' href='/addtocart/'+product._id)
-                      span
-                        | Bulk Order
-              .iwc_prodcutdetail_Continue
-                center
-                  a(href="")
-                    | Continue Shopping
-                  br 
-                  br 
-                  small [Shipping cost is on us]
+        .col-md-5
+          .card-detail
+            .cart
+              h5.MarT0
+                span Code: 
+                span#lblCode #{product.code}
+              h5#ctl00_ContentPlaceHolder1_pMainPrice.redtxt.MarT0
+                span Price: 
+                span NGN #{product.price}
+              .form-group
+                h3
+                  p.ptimedays
+                    span.plabel Production time for Bulk Order (Days): 
+                    br
+                    br
+                    span Regular: 
+                    span 6
+                    | &nbsp;to 10
+                    br
+                    br
+                    span Rush: 
+                    span 1 to 3
+                  p
+                    span.plabel Weight: 
+                    span.weight 235
+                    | &nbsp;(in Grams)
+                  p
+                    span.plabel Size:
+                    span.Size
+                      | Scroll: 8.5x11, Case: 12.75x2.0x2.0 +
+                      | Mailing Box Env
+                      | (in Inches)
+                  p
+                    span.plabel Orientation:
+                      |  Portrait (Vertical)
+                  p
+                    span.plabel Color:
+                      |  #{product.color || "No Color for this item."}
+                  p
+                    span.plabel
+                      | A Low Quantity Order Card: 
+                      i.glyphicon.glyphicon-info-sign.pointer.font16(data-toggle='tooltip', data-placement='bottom')
+                    br
+                    br
+                    span.pt-5
+                      b * N.B: Please note each set contains 50 pcs
+                .iwc_product_Menu
+                  ul
+                    li
+                      a.btn.btn-primary.sample-btn(type='submit', role='button' href='')
+                        span
+                          | Order Sample
+                    li
+                      a.btn.btn-primary.order-btn(type='submit', role='button' href='/addtocart/'+product._id)
+                        span
+                          | Bulk Order
+                .iwc_prodcutdetail_Continue
+                  center
+                    a(href="")
+                      | Continue Shopping
+                    br 
+                    br 
+                    small [Shipping cost is on us]
     .container.section-detail
-        #fbproddet.panel.panel-default
-          .panel-heading
-            h2.Mar0 Product Details
-          .panel-body
-            ul
-              li.description
-                h4 Description: 
+      #fbproddet.panel.panel-default
+        .panel-heading
+          h2.Mar0 Product Details
+        .panel-body
+          ul
+            li.description
+              h4 Description: 
                 p
                   span.description-span
                     | #{product.description}
-              li.paper
-                h4 #{product.material}:
+            li.paper
+              h4 #{product.material}:
                 p
                   span.paper-span
                     | #{product.materialDescription || 'No material description for this item.'}
-              li.addonCard
-                h4 Add on Cards:
+            li.addonCard
+              h4 Add on Cards:
                 p
                   span.addon-span
                     | Add on card paper will be matching to chosen card in terms of paper and design.
-              li.style
-                h4 Style:
+            li.style
+              h4 Style:
                 p
                   span.style-span
                     a(href='') Box Scrolls Card

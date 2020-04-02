@@ -8,24 +8,21 @@ block content
     -----------------------------
     --------------------------
   section
-    #carouselExampleIndicators.carousel.slide1(data-ride='carousel', data-interval='false')
-      ol.carousel-indicators
-        li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
-        li(data-target='#carouselExampleIndicators', data-slide-to='1')
-        li(data-target='#carouselExampleIndicators', data-slide-to='2')
+    #carouselExampleFade.carousel.slide.carousel-fade(data-ride='carousel')
       .carousel-inner
         .carousel-item.active
-          img.d-block.w-100(src='./img/banner-02.jpg', alt='First slide', style='width:100%')
+          img.d-block.w-100(src='./img/banner-02.jpg', alt='...')
         .carousel-item
-          img.d-block.w-100(src='./img/maxresdefault.jpg', alt='Second slide', style='width:100%')
+          img.d-block.w-100(src='./img/maxresdefault.jpg', alt='...')
         .carousel-item
-          img.d-block.w-100(src='./img/images (13).jpg', alt='Third slide', style='width:100%')
-      a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+          img.d-block.w-100(src='./img/images (13).jpg', alt='...')
+      a.carousel-control-prev(href='#carouselExampleFade', role='button', data-slide='prev')
         span.carousel-control-prev-icon(aria-hidden='true')
         span.sr-only Previous
-      a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+      a.carousel-control-next(href='#carouselExampleFade', role='button', data-slide='next')
         span.carousel-control-next-icon(aria-hidden='true')
         span.sr-only Next
+
   //
     -------------------------
     -----------------------------
@@ -90,7 +87,7 @@ block content
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, aliquam.
             .text-content
               h6  For as low as 
-              span #45,000 (1 Set)
+              span ₦45,000 (1 Set)
               br 
               button.btn.btn-order
                 a(href='/polish_scroll') Order Now
@@ -120,7 +117,7 @@ block content
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, aliquam.
             .text-content
               h6  For as low as 
-              span #45,000 (1 Set)
+              span ₦45,000 (1 Set)
               br 
               button.btn.btn-order
                 a(href='/luxury_scroll') Order Now
@@ -150,7 +147,7 @@ block content
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, aliquam.
             .text-content
               h6  For as low as 
-              span #45,000 (1 Set)
+              span ₦45,000 (1 Set)
               br 
               button.btn.btn-order
                 a(href='/velvet_scroll') Order Now

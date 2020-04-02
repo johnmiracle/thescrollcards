@@ -72,21 +72,12 @@ exports.showLogin = (req, res, next) => {
   res.render("login");
 };
 
-exports.polishScroll = async (res, req, next) => {
-  const products = await Product.find({ name: "Polish Paper Scrolls" })
-    .populate("category")
-    .then(response => {
-      res.render("products", { products });
-    })
-    .catch(function(error) {
-      // handle error
-      res.redirect("");
-      console.log(error);
-      return;
-    });
+exports.polishScroll = async (req, res, next) => {
+  const products = await Product.find({ name: "Polish Paper Scrolls" }).populate("category");
+  res.render("products", { products });
 };
 
-exports.velvetScroll = async (res, req, next) => {
+exports.velvetScroll = async (req, res, next) => {
   const products = await Product.find({ name: "Velvet Scrolls" }).populate("category");
   res.render("products", { products });
 };
@@ -154,8 +145,8 @@ exports.login = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash("danger", "Username & Password combination doesn't match any of our records");
-      return res.redirect("/login");
+      req.flash("Danger", "Username & Password combination doesn't match any of our records, Kindly register!!!");
+      return res.redirect("/register");
     }
 
     req.logIn(user, function(err) {
@@ -343,18 +334,18 @@ exports.payment_return = (req, res, next) => {
     })
     .then(response => {
       let order = [];
+      order.length = 0;
       order.orderStatus = response.data.data.gateway_response;
       order.orderGatewayResponse = response.data.data.gateway_response;
 
-      console.log(response.data.data.gateway_response);
       let query = { orderPaymentId: reference };
 
-      Order.update(query, order, function(err) {
+      Order.updateMany(query, order, function(err) {
         // handle errors
         if (err) {
           req.flash("danger", err.message);
           console.log(err);
-          res.redirect("");
+          res.redirect("/checkout");
         }
         // set cart to empty
         req.session.cart = null;
