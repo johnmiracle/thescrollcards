@@ -311,7 +311,7 @@ exports.view_Order = async (req, res, next) => {
 };
 
 exports.order_update = (req, res) => {
-  let order = [];
+  let order = {};
   order.orderStatus = req.body.status;
 
   let query = { _id: req.params.id };
