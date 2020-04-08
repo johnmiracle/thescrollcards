@@ -258,7 +258,7 @@ exports.payStack = (req, res, next) => {
       Authorization: process.env.paystack_secret_key,
     },
     data: {
-      callback_url: "http://localhost:3001/payment_return",
+      callback_url: process.env.baseUrl + "/payment_return",
       amount: cart.totalPrice * 100,
       email: req.body.shipEmail,
       first_name: req.body.shipFirstname,
