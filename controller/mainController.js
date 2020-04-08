@@ -11,13 +11,12 @@ const bcrypt = require("bcryptjs");
 exports.addCart = (req, res, next) => {
   const productId = req.params.id;
   const cart = new Cart(req.session.cart ? req.session.cart : {});
-  Product.findById(productId, function(err, product) {
+  Product.findById(productId, function (err, product) {
     if (err) {
       return res.redirect("/");
     }
     cart.add(product, product.id);
     req.session.cart = cart;
-    console.log(cart);
     res.redirect("/");
   });
 };
@@ -44,7 +43,7 @@ exports.cart = (req, res, next) => {
   // if cart is empty
   if (!req.session.cart) {
     return res.render("cart", {
-      products: null || {}
+      products: null || {},
     });
   }
   // New Cart Instance
@@ -54,7 +53,7 @@ exports.cart = (req, res, next) => {
   res.render("cart", {
     products: cart.generateArray(),
     tax: cart.tax,
-    totalPrice: cart.totalPrice
+    totalPrice: cart.totalPrice,
   });
 };
 
@@ -85,7 +84,7 @@ exports.velvetScroll = async (req, res, next) => {
 exports.smallPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
-    size: "small"
+    size: "small",
   }).populate("category");
   res.render("products", { products });
 };
@@ -93,16 +92,15 @@ exports.smallPolishScroll = async (req, res, next) => {
 exports.mediumPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
-    size: "medium"
+    size: "medium",
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
 exports.bigPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
-    size: "big"
+    size: "big",
   }).populate("category");
   res.render("products", { products });
 };
@@ -110,7 +108,7 @@ exports.bigPolishScroll = async (req, res, next) => {
 exports.smallVelvetScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Velvet Scrolls",
-    size: "small"
+    size: "small",
   }).populate("category");
   res.render("products", { products });
 };
@@ -118,7 +116,7 @@ exports.smallVelvetScroll = async (req, res, next) => {
 exports.mediumVelvetScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Velvet Scrolls",
-    size: "medium"
+    size: "medium",
   }).populate("category");
   res.render("products", { products });
 };
@@ -126,21 +124,20 @@ exports.mediumVelvetScroll = async (req, res, next) => {
 exports.bigVelvetScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Velvet Scrolls",
-    size: "big"
+    size: "big",
   }).populate("category");
-  console.log(products);
   res.render("products", { products });
 };
 
 exports.luxuryScroll = async (req, res, next) => {
   const products = await Product.find({
-    name: "Luxury Scrolls"
+    name: "Luxury Scrolls",
   }).populate("category");
   res.render("products", { products });
 };
 
 exports.login = (req, res, next) => {
-  passport.authenticate("local", function(err, user, info) {
+  passport.authenticate("local", function (err, user, info) {
     if (err) {
       return next(err);
     }
@@ -149,7 +146,7 @@ exports.login = (req, res, next) => {
       return res.redirect("/register");
     }
 
-    req.logIn(user, function(err) {
+    req.logIn(user, function (err) {
       if (err) {
         return next(err);
       }
@@ -193,10 +190,7 @@ exports.memberRegister = async (req, res, next) => {
   body("lastName", "Last name is required").notEmpty();
   body("email", "email is required").isEmail();
   body("phone", "Mobile Number is required").notEmpty();
-  body("password", "Passsword is required")
-    .trim()
-    .notEmpty()
-    .isLength({ min: 6 });
+  body("password", "Passsword is required").trim().notEmpty().isLength({ min: 6 });
   body("address", "Address is required").notEmpty();
 
   let err = validationResult(req.body);
@@ -211,11 +205,11 @@ exports.memberRegister = async (req, res, next) => {
       phone,
       password,
       address,
-      audience
+      audience,
     });
     bcrypt.hash(user.password, 10, (err, hash) => {
       user.password = hash;
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           console.log(err);
         } else {
@@ -230,7 +224,7 @@ exports.memberRegister = async (req, res, next) => {
 exports.checkout = (req, res, next) => {
   if (!req.session.cart) {
     return res.render("checkout", {
-      products: null
+      products: null,
     });
   }
   const cart = new Cart(req.session.cart);
@@ -239,7 +233,7 @@ exports.checkout = (req, res, next) => {
   }
   res.render("checkout", {
     products: cart.generateArray(),
-    totalPrice: currencyFormat(cart.totalPrice)
+    totalPrice: currencyFormat(cart.totalPrice),
   });
 };
 
@@ -248,7 +242,7 @@ exports.product = (req, res, next) => {
 };
 
 exports.productId = (req, res, next) => {
-  Product.findById(req.params.id, function(err, product) {
+  Product.findById(req.params.id, function (err, product) {
     if (err) return console.log(err);
     res.render("product", { product });
   });
@@ -261,7 +255,7 @@ exports.payStack = (req, res, next) => {
     url: "https://api.paystack.co/transaction/initialize/",
     headers: {
       "Content-Type": "application/json",
-      Authorization: process.env.paystack_secret_key
+      Authorization: process.env.paystack_secret_key,
     },
     data: {
       callback_url: "http://localhost:3001/payment_return",
@@ -271,10 +265,10 @@ exports.payStack = (req, res, next) => {
       last_name: req.body.shipLastName,
       cartid: "" + Math.floor(Math.random() * 1000000000 + 1),
       currency: "NGN",
-      MobileNumber: req.body.shipPhoneNumber
-    }
+      MobileNumber: req.body.shipPhoneNumber,
+    },
   })
-    .then(response => {
+    .then((response) => {
       let reference = response.data.data.reference;
       // new order doc
       const orderDoc = new Order({
@@ -294,10 +288,10 @@ exports.payStack = (req, res, next) => {
         orderGatewayResponse: "",
         orderComment: req.body.shipOrderComment,
         orderDate: new Date(),
-        orderProducts: req.session.cart
+        orderProducts: req.session.cart,
       });
 
-      orderDoc.save(err => {
+      orderDoc.save((err) => {
         if (err) {
           console.info(err.stack);
         } else {
@@ -307,7 +301,7 @@ exports.payStack = (req, res, next) => {
         }
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       req.flash("Danger", "There was an error processing your payment. You have not been changed and can try again.");
       res.redirect("/checkout");
@@ -317,7 +311,7 @@ exports.payStack = (req, res, next) => {
   return;
 };
 
-exports.payment_return = (req, res, next) => {
+exports.payment_return = async (req, res, next) => {
   const cart = new Cart(req.session.cart);
   const reference = req.query.reference;
 
@@ -326,33 +320,33 @@ exports.payment_return = (req, res, next) => {
   return axios
     .get(url, {
       headers: {
-        Authorization: process.env.paystack_secret_key
+        Authorization: process.env.paystack_secret_key,
       },
       data: {
-        reference: reference
-      }
+        reference: reference,
+      },
     })
-    .then(response => {
-      let order = [];
-      order.length = 0;
+    .then((response) => {
+      let order = {};
       order.orderStatus = response.data.data.gateway_response;
       order.orderGatewayResponse = response.data.data.gateway_response;
 
       let query = { orderPaymentId: reference };
 
-      Order.updateMany(query, order, function(err) {
+      Order.update(query, order, function (err) {
         // handle errors
         if (err) {
           req.flash("danger", err.message);
           console.log(err);
-          res.redirect("/checkout");
+          res.redirect("");
         }
         // set cart to empty
         req.session.cart = null;
         res.render("order_successful", { reference });
+        return;
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       req.flash("Danger", "There was an error verifying your payment.");
       res.redirect("/checkout");

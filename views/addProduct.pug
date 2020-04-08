@@ -52,30 +52,22 @@ block content
                 label(for='Stock') In Stock
                 select.form-control(name='inStock', required='')
                   option(selected='')
-                  option(value='Yes') Yes
-                  option(value='No') No
+                  option(value='In Stock') In Stock
+                  option(value='Out of Stock') Out of Stock
               .form-group
                 label(for='Description') Description
                 textarea#description.form-control(type='text', name='description', required='', rows='5')
             .col-md-6
               .form-group
-                .btn.btn-primary.btn-sm.float-left
-                  p
-                    | The file size must not be more than
-                    span.txt-bold  500KB
-                    br
-                    | File format must be any of these:
-                    br
-                    span.txt-bold .jpg, .jpeg, .png 
-                  span Choose file
-                  input(type='file' name='myFile' onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" width='600px', height='500px' require='')
+                p
+                  strong The file size must not be more than
+                  span.txt-bold  500KB
                   br
-                label
-                  br
-                  img#blah(alt='', width='500px', height='500px' src='404image')
-              br
-              br
-              br
-              button.btn.btn-success(type='submit', value='Submit') Add product
-              br 
-              br
+                  strong File format must be any of these: 
+                  span.txt-bold 
+                    strong .jpg, .jpeg, .png
+                .custom-file.mb-3
+                  input#file(type='file' class='custom-file-input' name='myFile' onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" width='600px', height='500px' require='')
+                  label.custom-file-label(for='file') Choose file
+                  img#blah.mt-5(alt='', width='500px', height='500px' src='404image')
+          button.btn.btn-success.btn-block.mt-3.mb-5(type='submit', value='Submit') Add product  

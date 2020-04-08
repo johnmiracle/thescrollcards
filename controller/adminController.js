@@ -11,7 +11,7 @@ const uploadFile = require("../handlers/uploadfile");
 
 require("dotenv").config();
 
-const backURL = req => req.header("Referer");
+const backURL = (req) => req.header("Referer");
 
 exports.addproduct = (req, res, next) => {
   // 1. set details
@@ -19,14 +19,14 @@ exports.addproduct = (req, res, next) => {
     destination: "./public/uploads",
     field: "myFile",
     fileLimit: 500000,
-    allowedExts: "jpg|jpeg|png"
+    allowedExts: "jpg|jpeg|png",
   };
 
   // 2. initialize upload
   const upload = uploadFile(req, details);
 
   // 3. handle upload
-  upload(req, res, err => {
+  upload(req, res, (err) => {
     let error;
     if (err) {
       error = err.message;
@@ -43,10 +43,7 @@ exports.addproduct = (req, res, next) => {
       res.redirect(backURL(req));
     } else {
       // no errors, handle path
-      const imagepath = `/${req.file.path
-        .split("\\")
-        .slice(1)
-        .join("/")}`;
+      const imagepath = `/${req.file.path.split("\\").slice(1).join("/")}`;
       // save path in db
       const product = new Product();
       product.name = req.body.name;
@@ -61,7 +58,7 @@ exports.addproduct = (req, res, next) => {
       product.inStock = req.body.inStock;
       product.imageUrl = imagepath;
 
-      product.save(err => {
+      product.save((err) => {
         // handle errors
         if (err) {
           req.flash("danger", err.message);
@@ -102,7 +99,7 @@ exports.addcategory = (req, res, next) => {
   category.author = req.body.author;
 
   // save the category name to mongo
-  category.save(err => {
+  category.save((err) => {
     // handle errors
     if (err) {
       req.flash("danger", err.message);
@@ -136,10 +133,7 @@ exports.adminRegister = async (req, res, next) => {
   check("firstName", "First name is required").notEmpty();
   check("lastName", "Last name is required").notEmpty();
   check("email", "email is required").isEmail();
-  check("password", "Passsword is required")
-    .trim()
-    .notEmpty()
-    .isLength({ min: 6 });
+  check("password", "Passsword is required").trim().notEmpty().isLength({ min: 6 });
 
   let err = validationResult(req.body);
 
@@ -151,7 +145,7 @@ exports.adminRegister = async (req, res, next) => {
       lastName,
       email,
       password,
-      isAdmin
+      isAdmin,
     });
     bcrypt.hash(user.password, 10, (err, hash) => {
       user.password = hash;
@@ -263,7 +257,7 @@ exports.categoryEdit = (req, res, next) => {
       // redirect to the add category view
       res.redirect("/admin/all-categories");
     }
-  }).catch(err => {
+  }).catch((err) => {
     req.flash("Danger", "Error updating product, Try again");
   });
 };

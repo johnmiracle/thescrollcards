@@ -42,7 +42,8 @@ const Productschema = new mongoose.Schema({
     required: true
   },
   inStock: {
-    type: Boolean
+    type: String,
+    required: true
   },
   created_on: { type: Date, default: Date.now }
 });

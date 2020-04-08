@@ -7,7 +7,10 @@ block content
                 each product, i in products
                     .column
                         .card-1
-                            img(src=''+product.imageUrl, alt='' class="product-img")
+                            #lb-back.pt-3
+                                span.close &times;
+                                #lb-img
+                            img.zoomD(src=''+product.imageUrl, alt=`${product.code}` class="product-img")
                             .card-text
                                 ul
                                     li
@@ -20,11 +23,11 @@ block content
                                 .row.column-apart
                                     .col-md-6
                                         span
-                                            a.btn.btn-primary(type='submit', role='button' href='/product/'+product._id) View Detail
+                                            a.btn.btn-primary.btn-block(type='submit', role='button' href='/product/'+product._id) View Detail
                                     br
                                     .col-md-6
                                         span
-                                            a.btn.btn-primary.btn-zoom(type='submit', role='button' href="") Zoom
+                                            a.btn.btn-primary.btn-block(href=''+product.imageUrl, data-fancybox='') Zoom
             else
                 .card-content
                    center

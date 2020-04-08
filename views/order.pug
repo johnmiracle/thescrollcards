@@ -84,7 +84,10 @@ block content
                                     li.list-group-item 
                                         img.d-block.w-100(src=''+data.item.imageUrl, alt='', width='0%', height='')
                                     li.list-group-item
-                                        b Product: 
+                                        b Code: 
+                                            span.float-right #{data.item.code}
+                                    li.list-group-item
+                                        b Product Name: 
                                             span.float-right #{data.item.name}
                                     li.list-group-item 
                                         b Quantity: 
