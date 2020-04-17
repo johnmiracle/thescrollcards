@@ -628,7 +628,7 @@ p {
   opacity: 0.7;
 }
 
-.zoomD:hover{
+.zoomD:hover {
   opacity: 0.7;
   cursor: pointer;
 }
@@ -1915,7 +1915,7 @@ textarea {
   box-shadow: 0px 0px 7px grey;
 }
 
-.modal-confirm .modal-header {
+.modal-confirm .modal-head {
   background: #47c9a2;
   border-bottom: none;
   position: relative;
@@ -1952,18 +1952,19 @@ textarea {
 
 .modal-confirm .icon-box {
   color: #fff;
-  text-align: center !important;
-}
-
-.modal-confirm .icon-box i {
-  border-radius: 50%;
+  width: 95px;
+  height: 95px;
   display: inline-block;
+  border-radius: 50%;
   z-index: 9;
   border: 5px solid #fff;
   padding: 15px;
-  font-size: 62px;
+  text-align: center;
+}
+
+.modal-confirm .icon-box i {
+  font-size: 64px;
   margin: -5px 0 0 -5px;
-  text-align: center !important;
 }
 
 .modal-confirm.modal-dialog {
@@ -2011,9 +2012,7 @@ textarea {
 }
 
 .font-circle {
-  text-align: center !important;
-  justify-self: center !important;
-  margin-left: 170px !important;
+  text-align: center;
 }
 
 /* =================================*/
@@ -2638,5 +2637,12 @@ button.delete {
 @media (max-width: 767px) {
   .breadcrumb-item + .breadcrumb-item {
     padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-confirm {
+    width: 100%;
+    text-align: center;
   }
 }

@@ -37,6 +37,7 @@ router.use(isAuthenticated)
 router.get("/checkout", mainController.checkout);
 router.post("/paystack/pay", mainController.payStack);
 router.get("/payment_return", mainController.payment_return);
+router.get("/checkout_cancel", mainController.checkout_cancel)
 
 
 module.exports = router;

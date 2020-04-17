@@ -259,6 +259,7 @@ exports.payStack = (req, res, next) => {
     },
     data: {
       callback_url: process.env.baseUrl + "/payment_return",
+      cancell_url: process.env.baseUrl + "/checkout_cancel",
       amount: cart.totalPrice * 100,
       email: req.body.shipEmail,
       first_name: req.body.shipFirstname,
@@ -268,7 +269,7 @@ exports.payStack = (req, res, next) => {
       MobileNumber: req.body.shipPhoneNumber,
     },
   })
-    .then((response) => {
+    .then((response, error) => {
       let reference = response.data.data.reference;
       // new order doc
       const orderDoc = new Order({
@@ -311,46 +312,81 @@ exports.payStack = (req, res, next) => {
   return;
 };
 
-exports.payment_return = async (req, res, next) => {
+exports.payment_return = (req, res, next) => { 
+  // cart
   const cart = new Cart(req.session.cart);
+
+  // Define the reference
   const reference = req.query.reference;
 
+  // Paystack verify Url
   const url = "https://api.paystack.co/transaction/verify/" + reference;
 
-  return axios
-    .get(url, {
+  const paymentStatus = async () => {
+    return await axios.get(url, {
       headers: {
         Authorization: process.env.paystack_secret_key,
       },
       data: {
         reference: reference,
       },
-    })
-    .then((response) => {
-      let order = {};
-      order.orderStatus = response.data.data.gateway_response;
-      order.orderGatewayResponse = response.data.data.gateway_response;
+    });
+  };
+  (async (error) => {
+    const response = await paymentStatus();
+    let transactionStatus = response.data.data.gateway_response;
+    if (error) {
+      transactionStatus = false;
 
-      let query = { orderPaymentId: reference };
+      if (transactionStatus === "Cancelled") {
+        let { transactionStatus } = Cancelled;
+      }
+    }
 
-      Order.update(query, order, function (err) {
-        // handle errors
-        if (err) {
-          req.flash("danger", err.message);
-          console.log(err);
-          res.redirect("");
-        }
-        // set cart to empty
-        req.session.cart = null;
-        res.render("order_successful", { reference });
-        return;
-      });
-    })
-    .catch(function (error) {
+    let order = {};
+    order.orderStatus = transactionStatus;
+    order.orderGatewayResponse = transactionStatus;
+
+    let query = { orderPaymentId: reference };
+
+    Order.update(query, order, function (err) {
+      // handle errors
+      if (err) {
+        req.flash("danger", err.message);
+        console.log(err);
+        res.redirect("");
+      }
+      // set cart to empty
+      req.session.cart = null;
+      res.render("order_successful", { reference });
+      return;
+    }).catch(function (error) {
       // handle error
       req.flash("Danger", "There was an error verifying your payment.");
       res.redirect("/checkout");
       console.log(error);
       return;
     });
+  })();
+};
+
+exports.checkout_cancel = (req, res, next) => {
+  let order = {};
+  order.orderStatus = "Cancelled";
+  order.orderGatewayResponse = "Cancelled";
+
+  let query = { orderPaymentId: reference };
+
+  Order.update(query, order, function (err) {
+    // handle errors
+    if (err) {
+      req.flash("danger", err.message);
+      console.log(err);
+      res.redirect("");
+    }
+    // set cart to empty
+    req.session.cart = null;
+    res.render("order_successful", { reference });
+    return;
+  });
 };

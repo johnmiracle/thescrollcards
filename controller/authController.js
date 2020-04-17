@@ -1,9 +1,9 @@
 module.exports = {
   isAuthenticated: (req, res, next) => {
-    if (req.isAuthenticated()) {
-      return next();
+    if (!req.isAuthenticated()) {
+      req.flash("danger", "Please Login to view this page");
+      res.redirect("/login");
     }
-    req.flash("danger", "Please Login to view this page");
-    res.redirect("/login");
-  }
+    return next();
+  },
 };

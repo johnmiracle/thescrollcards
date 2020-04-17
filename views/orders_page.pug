@@ -2,38 +2,11 @@ extends layout
 include ./mixins/_flash-messages
 
 block content
-    .container
+    .container-fluid
         +flashMessages()
         br
         .col-sm-12
             h2 Orders
-        .col-sm-12.search_bar
-            .input-group
-                input#order_filter.form-control(type='text', name='order_filter', placeholder='Filter orders')
-                .input-group-append
-                button#btn_order_filter.btn.btn-outline-success Filter
-                a.hidden-xs.btn.btn-outline-info.orderFilterByStatus(href='/users/orders/bystatus/')
-                    | By
-                    | status
-                a.hidden-xs.btn.btn-outline-warning(href='/users/orders')
-                    i.fa.fa-search
-            br
-            .orderFilter
-                .row
-                    .text-warning.top-pad-10.col-sm-8
-                        | Orders can be filtered by: surname, email
-                        | address or
-                        | postcode/zipcode
-                    .col-sm-4.top-pad-10
-                        form.form-inline.float-sm-right
-                        select#orderStatusFilter.form-control
-                            option Completed
-                            option Paid
-                            option Created
-                            option Cancelled
-                            option Declined
-                            option Shipped
-                            option Pending
         br                    
         .col-sm-12.top-pad-10
             ul.list-group
