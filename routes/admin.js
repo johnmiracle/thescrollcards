@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controller/adminController");
-const { isAuthenticated } = require("../controller/authController");
+const { isAuthenticated, checkAccess } = require("../controller/authController");
 
 router.get("/register", adminController.registerView);
 router.post("/register", adminController.adminRegister);
 router.get("/logout", adminController.logout);
 
-router.use(isAuthenticated);
+router.use(isAuthenticated, checkAccess);
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-    res.send("respond with a resource");
+  res.send("respond with a resource");
 });
 
 router.get("/admin-home", adminController.adminHome);
@@ -31,6 +31,6 @@ router.get("/category/delete/:id", adminController.category_delete);
 router.get("/orders", adminController.all_Orders);
 router.get("/order/view/:id", adminController.view_Order);
 router.get("/order/delete/:id", adminController.order_delete);
-router.post('/order/update/:id', adminController.order_update)
+router.post("/order/update/:id", adminController.order_update);
 
 module.exports = router;
