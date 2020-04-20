@@ -237,6 +237,10 @@ exports.checkout = (req, res, next) => {
   });
 };
 
+exports.getQuote = async (req, res, next) => {
+
+};
+
 exports.product = (req, res, next) => {
   res.render("product");
 };

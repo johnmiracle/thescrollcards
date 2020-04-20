@@ -22,10 +22,13 @@ const checkAccess = (req, res, next) => {
 
 const checkIn = (req, res, next) => {
   // If the user is login already. redirect home
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.url == "/login") {
+    res.redirect("/");
+  }
+  if (req.isAuthenticated() && req.url == "/register") {
     res.redirect("/");
   } else {
-    return;
+    next();
   }
 };
 
