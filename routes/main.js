@@ -31,6 +31,7 @@ router.get("/velvet_scroll", checkUser, mainController.velvetScroll);
 router.get("/polish_scroll", checkUser, mainController.polishScroll);
 router.get("/checkout", isAuthenticated, checkUser, mainController.checkout);
 router.get("/price_quote", checkUser, mainController.getQuote);
+router.post("/stock_quote", checkUser, mainController.quote);
 router.post("/paystack/pay", isAuthenticated, checkUser, mainController.payStack);
 router.get("/payment_return", isAuthenticated, checkUser, mainController.payment_return);
 router.get("/checkout_cancel", isAuthenticated, checkUser, mainController.checkout_cancel);

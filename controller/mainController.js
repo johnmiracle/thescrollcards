@@ -7,6 +7,7 @@ const axios = require("axios").default;
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 
 exports.addCart = (req, res, next) => {
   const productId = req.params.id;
@@ -237,8 +238,55 @@ exports.checkout = (req, res, next) => {
   });
 };
 
-exports.getQuote = async (req, res, next) => {
+exports.getQuote = (req, res, next) => {
+  res.render("getprice");
+};
 
+exports.quote = (req, res, next) => {
+  const quoteDetail = `
+    You have a new price quote request.\n\n
+    Client Details\n\n
+    Name: ${req.body.name}\n\n
+    Email: ${req.body.email}\n\n
+    Address: ${req.body.address}\n\n
+    Quote Details\n
+    Items: ${req.body.printDetail}\n\n
+    Design: ${req.body.desingDetail}\n\n
+    Deliver Address: ${req.body.orderDetail}\n\n
+  `;
+
+  // async..await is not allowed in global scope, must use a wrapper
+  let transporter = nodemailer.createTransport({
+    host: "mail.phdng.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "info.phdng.com", // generated ethereal user
+      password: "Profound2012", // generated ethereal password
+    },
+    tls: {
+      rejectUnauthorizaed: false,
+    },
+  });
+  // send mail with defined transport object
+
+  const mailOptions = {
+    from: '"Get Quote Price" <info.phdng.com>', // sender address
+    to: "anajemiracle@gmail.com", // list of receivers
+    subject: "Price Quote Request", // Subject line
+    text: "Hello world?", // plain text body
+    html: quoteDetail, // html body
+  };
+  transporter.sendMail(mailOptions, (err, res) => {
+    if (err) {
+      // TODO: send a response of 5
+      console.log(err);
+    } else {
+      console.log("Message sent: %s");
+      req.flash("success", "Request Sent");
+      res.render("price_quote");
+    }
+  });
 };
 
 exports.product = (req, res, next) => {
@@ -316,7 +364,7 @@ exports.payStack = (req, res, next) => {
   return;
 };
 
-exports.payment_return = (req, res, next) => { 
+exports.payment_return = (req, res, next) => {
   // cart
   const cart = new Cart(req.session.cart);
 

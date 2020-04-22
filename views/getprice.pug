@@ -7,7 +7,7 @@ block content
         h2 Get Quote for your Prefered Product &amp; Print
       .quote-cont
         +flashMessages()
-        form#info_form(action='', method='POST')
+        form#info_form(action='/stock_quote', method='POST')
           .container
             h4 Your order Info
             .border-line
@@ -19,21 +19,18 @@ block content
                 p Please specify products you are interested in, along with their quantities.
               .col-md-6
                 .input_detail
-                  textarea#print_detail(type='text', placeholder='500 business cards, 200 Letterheads and 100 Notepads', required='')
-                  p#print_detail_error
+                  textarea#print_detail(type='text', name="printDetail", placeholder='500 business cards, 200 Letterheads and 100 Notepads', required='')
               .col-md-6.won
                 h4
                   | Do you already have a ready made design?
-              .col-md-6.won(required='')
-                input#design_detail.field_text(type='text', style='height:40px', required='', placeholder='Yes i do or No i dont')
-                p#checkbox_error
+              .col-md-6.won
+                input#design_detail.field_text(type='text', name="designDetail", style='height:40px', required='', placeholder='Yes i do or No i dont')
               .col-md-6
                 h4
                   | Where would you want your order delivered?
                 p This helps us know what it would cost to ship your order to you.
               .col-md-6.input_detail
-                textarea#deliver_detail(type='text', placeholder='61, Shipeolu street,by FCMB, Onipanu,Somolu, Lagos.', required='')
-                p#deliver_error
+                textarea#deliver_detail(type='text', name="orderDetail", placeholder='61, Shipeolu street,by FCMB, Onipanu,Somolu, Lagos.', required='')
           .border_line
           .container
             h4
@@ -47,19 +44,16 @@ block content
                   h4
                     | Your Name
                 .col-md-6.align
-                  input#name.field_text(type='text', style='height:40px', required='')
-                  p#name_error
+                  input#name.field_text(type='text', style='height:40px', name="name", required='')
                 .col-md-6.align
                   h4
                     | Your email address
                 .col-md-6.align
-                  input#Email_field.field_text(type='email', style='height:40px', placeholder='@gmail.com', required='')
-                  p#email_error
+                  input#Email_field.field_text(type='email', style='height:40px',name="email", placeholder='@gmail.com', required='')
                 .col-md-6.align
                   h4
                     | Your Mobile Number
                 .col-md-6.align
-                  input#phoneNum_field.field_text(type='text', style='height:40px', placeholder='+2348131179082', maxlength='20', required='')
-                  p#phone_number_error
+                  input#phoneNum_field.field_text(type='text', style='height:40px', name="phone", placeholder='+2348131179082', maxlength='20', required='')
           .submit
             button.btn.btn-submit(type='submit') Submit 
