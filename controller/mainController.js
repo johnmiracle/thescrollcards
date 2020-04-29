@@ -311,19 +311,7 @@ exports.quote = (req, res, next) => {
       "h:Reply-To": "reply2this@company.com",
       //You can use "html:" to send HTML email content. It's magic!
       // html: "<b>Wow Big powerful letters</b>",
-      body: `
-        You have a new price quote request.\n\n
-        Client Details\n\n
-        Name: ${req.body.name}\n\n
-        Email: ${req.body.email}\n\n
-        Address: ${req.body.address}\n\n
-        Quote Details\n
-        Items: ${req.body.printDetail}\n\n
-        Design: ${req.body.desingDetail}\n\n
-        Deliver Address: ${req.body.orderDetail}\n\n
-      `,
-      //You can use "text:" to send plain-text content. It's oldschool!
-      text: "Mailgun rocks, pow pow!",
+      text: quoteDetail,
     },
     (err, info) => {
       if (err) {
