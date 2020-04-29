@@ -8,6 +8,8 @@ router.get("/", checkUser, function (req, res, next) {
   res.render("index", { title: "theScrollCard.com" });
 });
 
+router.get("/contact", mainController.contact);
+router.post("/contact", mainController.contactUs)
 router.get("/cart", checkUser, mainController.cart);
 router.get("/addtocart/:id", checkUser, mainController.addCart);
 router.get("/addbyone/:id", checkUser, mainController.addOne);

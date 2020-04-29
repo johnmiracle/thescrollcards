@@ -8,7 +8,7 @@ function uploadFile(req, details) {
     destination: details.destination,
     filename: (req, file, callback) => {
       callback(null, `${details.filename || uuid.v4()}${path.extname(file.originalname)}`);
-    }
+    },
   });
 
   // init upload
@@ -31,12 +31,12 @@ function uploadFile(req, details) {
       } else {
         return callback(
           {
-            message: "That filetype isn't allowed!"
+            message: "That filetype isn't allowed!",
           },
           false
         );
       }
-    }
+    },
   }).single(details.field);
 
   return upload;

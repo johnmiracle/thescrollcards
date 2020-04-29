@@ -971,6 +971,7 @@ div.header-text {
   text-align: center;
   font-weight: 100;
   font-size: 25px;
+  font-family: Nunito, sans-serif;
   margin: 30px 0px;
 }
 
@@ -988,7 +989,8 @@ div.header-text {
 
 .quote-cont h4 {
   font-weight: 100;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: Nunito, sans-serif;
   margin-top: 10px;
 }
 
@@ -996,10 +998,6 @@ div.header-text {
   font-size: 15px;
 }
 
-body,
-h4 {
-  font-weight: 300;
-}
 
 .quote-cont span {
   font-size: 12px;
@@ -1034,6 +1032,12 @@ h4 {
 
 .won {
   margin: 15px 0px;
+}
+
+.won p {
+  color: black;
+  font-size: 15px;
+  font-family: Nunito, sans-serif;
 }
 
 .align {
@@ -2631,6 +2635,15 @@ button.delete {
 
   .card-box img {
     width: 50% !important;
+  }
+
+  .contact h2 {
+    font-size: 40px;
+  }
+
+  .contact {
+    padding: 50px 0px;
+    margin-left: 25px;
   }
 }
 

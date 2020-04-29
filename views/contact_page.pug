@@ -8,18 +8,9 @@ block content
         .contact
           h2
             | Contact
-    //
-      -------------------------
-      -----------------------------
-      ------Block 2 ends here------
-      -----------------------------
-      --------------------------
-    //
-      -------------------------
-      -----------------------------
-      -----Block 3 starts here-----
-      -----------------------------
-      --------------------------
+    .container
+      center
+        +flashMessages()
     section.sect2
       .container
         .row
@@ -27,24 +18,22 @@ block content
             h2 Contact with us
             p Send us a message
             // BEGIN FORM
-            form#form1(name='form1', method='post', action='/contact-us')
+            form#form1(action='/contact', method='POST')
               .row-fluid
                 span#errorMessage.control-label
               .control-group
                 label.control-label Name
                 .controls
-                  input#name.form-control.form-control-lg(name='name', type='text', placeholder='Your full name')
+                  input#name.form-control.form-control-lg(name='name', type='text', placeholder='Your full name' required='')
               .control-group
                 label.control-label Email 
                 .controls
-                  input#email.form-control.form-control-lg(name='email', type='text', placeholder='your email address')
+                  input#email.form-control.form-control-lg(name='email', type='text', placeholder='your email address' required='')
               .control-group
                 label.control-label Message
                 .controls
-                  textarea#message.textbox.form-control.form-control-lg(name='message', rows='10', placeholder='what would you like to tell us?')
-              div
-                label
-                  input.btn.theme-btn(name='Button', type='button', value='Send', onclick='validation()')
+                  textarea#message.textbox.form-control.form-control-lg(name='message', rows='10', placeholder='what would you like to tell us?' required='')
+              button.btn.theme-btn(type='submit') Send
             // END FORM
           .col-md-6
             center
@@ -55,9 +44,9 @@ block content
                   p
                     | 1st floor, 28 Shipeolu Street,
                     br
-                    |                                     Onipanu, Lagos. 
+                    | Onipanu, Lagos. 
                     br
-                    |                                     Elediye Bus-Stop by FCMB
+                    | Elediye Bus-Stop by FCMB
                     br
                   h4 Land Mark: 
                   p

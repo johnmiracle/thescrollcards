@@ -12,7 +12,6 @@ const MongoStore = require("connect-mongo")(session);
 const cors = require("cors");
 const moment = require("moment");
 
-const datetime = moment().format("YYYY-MM-DDThh:mm:ss.ms");
 // .env setup
 require("dotenv").config();
 

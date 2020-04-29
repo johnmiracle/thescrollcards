@@ -4,9 +4,11 @@ include ./mixins/_flash-messages
 block content
     section#quote
       .quote-h2(id='')
+        .container
+          center
+            +flashMessages()
         h2 Get Quote for your Prefered Product &amp; Print
       .quote-cont
-        +flashMessages()
         form#info_form(action='/stock_quote', method='POST')
           .container
             h4 Your order Info
@@ -16,21 +18,27 @@ block content
               .col-md-6
                 h4
                   | What do you want to Print?
-                p Please specify products you are interested in, along with their quantities.
+                p.ml-3 Please specify products you are interested in, along with their quantities.
               .col-md-6
                 .input_detail
-                  textarea#print_detail(type='text', name="printDetail", placeholder='500 business cards, 200 Letterheads and 100 Notepads', required='')
+                  textarea.form-control.form-control-lg(type='text', name="printDetail", placeholder='500 business cards, 200 Letterheads and 100 Notepads', required='')
               .col-md-6.won
                 h4
                   | Do you already have a ready made design?
               .col-md-6.won
-                input#design_detail.field_text(type='text', name="designDetail", style='height:40px', required='', placeholder='Yes i do or No i dont')
+                input#yes(type='radio', name='designDetail', value='Yes, I have a design') 
+                label(for='yes')
+                  p Yes, I have a design
+                br
+                input#no(type='radio', name='designDetail', value='No, I dont have a design') 
+                label(for='no')
+                  p No, I dont have a design
               .col-md-6
                 h4
                   | Where would you want your order delivered?
-                p This helps us know what it would cost to ship your order to you.
+                p.ml-3 This helps us know what it would cost to ship your order to you.
               .col-md-6.input_detail
-                textarea#deliver_detail(type='text', name="orderDetail", placeholder='61, Shipeolu street,by FCMB, Onipanu,Somolu, Lagos.', required='')
+                textarea.form-control.form-control-lg(type='text', name="orderDetail", placeholder='61, Shipeolu street,by FCMB, Onipanu,Somolu, Lagos.', required='')
           .border_line
           .container
             h4
@@ -44,16 +52,16 @@ block content
                   h4
                     | Your Name
                 .col-md-6.align
-                  input#name.field_text(type='text', style='height:40px', name="name", required='')
+                  input.form-control.form-control-lg(type='text', style='height:40px', name="name",placeholder='thescrollinvites', required='')
                 .col-md-6.align
                   h4
                     | Your email address
                 .col-md-6.align
-                  input#Email_field.field_text(type='email', style='height:40px',name="email", placeholder='@gmail.com', required='')
+                  input.form-control.form-control-lg(type='email', style='height:40px',name="email", placeholder='salesontws@gmail.com', required='')
                 .col-md-6.align
                   h4
                     | Your Mobile Number
                 .col-md-6.align
-                  input#phoneNum_field.field_text(type='text', style='height:40px', name="phone", placeholder='+2348131179082', maxlength='20', required='')
+                  input.form-control.form-control-lg(type='text', style='height:40px', name="phone", placeholder='+2348131179082', maxlength='20', required='')
           .submit
             button.btn.btn-submit(type='submit') Submit 

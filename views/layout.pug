@@ -27,11 +27,20 @@ body
     .container
       nav.navbar.navbar-expand-lg.navbar-light
         a.navbar-brand(href='/') 
-          img(src="./img/logo_blue.png", alt="Logo" width='100%')
+          img(src="/img/logo_blue.png", alt="Logo" width='100%')
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse.justify-content-between
           ul.navbar-nav.centered.m-auto
+            li.nav-item
+              a.nav-link(href="/")
+                | Home
+            li.nav-item
+              a.nav-link(href="/price_quote")
+                | Get Quote
+            li.nav-item
+              a.nav-link(href="/contact")
+                | Contact Us
           div.centered
             ul.navbar-nav.mr-auto
               if user

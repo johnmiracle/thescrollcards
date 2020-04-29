@@ -8,6 +8,8 @@ const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const mailgun = require("nodemailer-mailgun-transport");
+const auth = require("../config/nodemailer");
 
 exports.addCart = (req, res, next) => {
   const productId = req.params.id;
@@ -56,6 +58,44 @@ exports.cart = (req, res, next) => {
     tax: cart.tax,
     totalPrice: cart.totalPrice,
   });
+};
+
+exports.contact = (req, res, next) => {
+  res.render("contact_page");
+};
+
+exports.contactUs = (req, res, next) => {
+  const quoteDetail = `
+    You have a new price quote request.\n\n
+    Client Details:\n 
+    Name: ${req.body.name}\n
+    Email: ${req.body.email}\n
+    <u> Message: </u> \n ${req.body.message}\n
+  `;
+
+  const nodemailerMailgun = nodemailer.createTransport(mailgun(auth));
+
+  // mail detail
+  nodemailerMailgun.sendMail(
+    {
+      from: "salesontws@gmail.com",
+      to: "anajemiracle@gmail.com", // An array if you have multiple recipients.
+      subject: "Price Quote Request",
+      "h:Reply-To": "salesontws@gmail.com",
+      //You can use "text:" to send plain-text content. It's oldschool!
+      text: quoteDetail,
+    },
+    (err, info) => {
+      if (err) {
+        console.log(`Error: ${err}`);
+        req.flash("Danger", "error sending request!!!");
+        return res.redirect("/contact");
+      } else {
+        req.flash("Success", "Request sent!!!");
+        return res.redirect("/contact");
+      }
+    }
+  );
 };
 
 exports.removeCart = (req, res, next) => {
@@ -142,6 +182,8 @@ exports.login = (req, res, next) => {
     if (err) {
       return next(err);
     }
+
+    // check if is not a user
     if (!user) {
       req.flash("Danger", "Username & Password combination doesn't match any of our records, Kindly register!!!");
       return res.redirect("/register");
@@ -182,11 +224,14 @@ exports.memberRegister = async (req, res, next) => {
   const isAdmin = req.body.isAdmin;
 
   let user = await User.findOne({ email: req.body.email });
+
+  // check if emai is registered
   if (user) {
     req.flash("danger", "email is already registered, Please login");
     res.redirect("/login");
   }
 
+  // input validation
   body("firstName", "First name is required").notEmpty();
   body("lastName", "Last name is required").notEmpty();
   body("email", "email is required").isEmail();
@@ -255,38 +300,42 @@ exports.quote = (req, res, next) => {
     Deliver Address: ${req.body.orderDetail}\n\n
   `;
 
-  // async..await is not allowed in global scope, must use a wrapper
-  let transporter = nodemailer.createTransport({
-    host: "mail.phdng.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: "info.phdng.com", // generated ethereal user
-      password: "Profound2012", // generated ethereal password
-    },
-    tls: {
-      rejectUnauthorizaed: false,
-    },
-  });
-  // send mail with defined transport object
+  const nodemailerMailgun = nodemailer.createTransport(mailgun(auth));
 
-  const mailOptions = {
-    from: '"Get Quote Price" <info.phdng.com>', // sender address
-    to: "anajemiracle@gmail.com", // list of receivers
-    subject: "Price Quote Request", // Subject line
-    text: "Hello world?", // plain text body
-    html: quoteDetail, // html body
-  };
-  transporter.sendMail(mailOptions, (err, res) => {
-    if (err) {
-      // TODO: send a response of 5
-      console.log(err);
-    } else {
-      console.log("Message sent: %s");
-      req.flash("success", "Request Sent");
-      res.render("price_quote");
+  nodemailerMailgun.sendMail(
+    // mail detail
+    {
+      from: "salesontws@gmail.com",
+      to: "anajemiracle@gmail.com", // An array if you have multiple recipients.
+      subject: "Hey you, awesome!",
+      "h:Reply-To": "reply2this@company.com",
+      //You can use "html:" to send HTML email content. It's magic!
+      // html: "<b>Wow Big powerful letters</b>",
+      body: `
+        You have a new price quote request.\n\n
+        Client Details\n\n
+        Name: ${req.body.name}\n\n
+        Email: ${req.body.email}\n\n
+        Address: ${req.body.address}\n\n
+        Quote Details\n
+        Items: ${req.body.printDetail}\n\n
+        Design: ${req.body.desingDetail}\n\n
+        Deliver Address: ${req.body.orderDetail}\n\n
+      `,
+      //You can use "text:" to send plain-text content. It's oldschool!
+      text: "Mailgun rocks, pow pow!",
+    },
+    (err, info) => {
+      if (err) {
+        console.log(`Error: ${err}`);
+        req.flash("Danger", "Error sending quote request!!!");
+        return res.redirect("/price_quote");
+      } else {
+        req.flash("Success", "Quote request successfully sent!!!");
+        return res.redirect("/price_quote");
+      }
     }
-  });
+  );
 };
 
 exports.product = (req, res, next) => {
@@ -311,7 +360,6 @@ exports.payStack = (req, res, next) => {
     },
     data: {
       callback_url: process.env.baseUrl + "/payment_return",
-      cancell_url: process.env.baseUrl + "/checkout_cancel",
       amount: cart.totalPrice * 100,
       email: req.body.shipEmail,
       first_name: req.body.shipFirstname,
@@ -404,9 +452,7 @@ exports.payment_return = (req, res, next) => {
     Order.update(query, order, function (err) {
       // handle errors
       if (err) {
-        req.flash("danger", err.message);
         console.log(err);
-        res.redirect("");
       }
       // set cart to empty
       req.session.cart = null;
