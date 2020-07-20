@@ -125,7 +125,7 @@ exports.velvetScroll = async (req, res, next) => {
 exports.smallPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
-    size: "small",
+    size: "Small",
   }).populate("category");
   res.render("products", { products });
 };
@@ -133,7 +133,7 @@ exports.smallPolishScroll = async (req, res, next) => {
 exports.mediumPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
-    size: "medium",
+    size: "Medium",
   }).populate("category");
   res.render("products", { products });
 };
@@ -141,7 +141,7 @@ exports.mediumPolishScroll = async (req, res, next) => {
 exports.bigPolishScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Polish Paper Scrolls",
-    size: "big",
+    size: "Gig",
   }).populate("category");
   res.render("products", { products });
 };
@@ -149,7 +149,7 @@ exports.bigPolishScroll = async (req, res, next) => {
 exports.smallVelvetScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Velvet Scrolls",
-    size: "small",
+    size: "Small",
   }).populate("category");
   res.render("products", { products });
 };
@@ -157,7 +157,7 @@ exports.smallVelvetScroll = async (req, res, next) => {
 exports.mediumVelvetScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Velvet Scrolls",
-    size: "medium",
+    size: "Medium",
   }).populate("category");
   res.render("products", { products });
 };
@@ -165,7 +165,7 @@ exports.mediumVelvetScroll = async (req, res, next) => {
 exports.bigVelvetScroll = async (req, res, next) => {
   const products = await Product.find({
     name: "Velvet Scrolls",
-    size: "big",
+    size: "Big",
   }).populate("category");
   res.render("products", { products });
 };
