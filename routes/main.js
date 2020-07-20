@@ -9,7 +9,7 @@ router.get("/", checkUser, function (req, res, next) {
 });
 
 router.get("/contact", mainController.contact);
-router.post("/contact", mainController.contactUs)
+router.post("/contact", mainController.contactUs);
 router.get("/cart", checkUser, mainController.cart);
 router.get("/addtocart/:id", checkUser, mainController.addCart);
 router.get("/addbyone/:id", checkUser, mainController.addOne);
@@ -36,6 +36,5 @@ router.get("/price_quote", checkUser, mainController.getQuote);
 router.post("/stock_quote", checkUser, mainController.quote);
 router.post("/paystack/pay", isAuthenticated, checkUser, mainController.payStack);
 router.get("/payment_return", isAuthenticated, checkUser, mainController.payment_return);
-router.get("/checkout_cancel", isAuthenticated, checkUser, mainController.checkout_cancel);
 
 module.exports = router;

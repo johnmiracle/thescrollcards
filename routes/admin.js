@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adminController = require("../controller/adminController");
 const { isAuthenticated, checkAccess } = require("../controller/authController");
+const upload = require("../handlers/uploadfile");
 
 router.get("/register", adminController.registerView);
 router.post("/register", adminController.adminRegister);
@@ -16,7 +17,7 @@ router.get("/", function (req, res, next) {
 
 router.get("/admin-home", adminController.adminHome);
 router.get("/add-product", adminController.addproductpage);
-router.post("/products/add", adminController.addproduct);
+router.post("/products/add", upload.single("myFile"), adminController.addproduct);
 router.get("/add-category", adminController.addcategorypage);
 router.post("/category/add", adminController.addcategory);
 router.get("/all-products", adminController.products);

@@ -66,7 +66,7 @@ exports.contact = (req, res, next) => {
 
 exports.contactUs = (req, res, next) => {
   const quoteDetail = `
-    You have a new price quote request.\n\n
+    You have a Contact Us request.\n\n
     Client Details:\n 
     Name: ${req.body.name}\n
     Email: ${req.body.email}\n
@@ -80,7 +80,7 @@ exports.contactUs = (req, res, next) => {
     {
       from: "salesontws@gmail.com",
       to: "anajemiracle@gmail.com", // An array if you have multiple recipients.
-      subject: "Price Quote Request",
+      subject: "Contact Us Request",
       "h:Reply-To": "salesontws@gmail.com",
       //You can use "text:" to send plain-text content. It's oldschool!
       text: quoteDetail,
@@ -258,6 +258,8 @@ exports.memberRegister = async (req, res, next) => {
       user.save(function (err) {
         if (err) {
           console.log(err);
+          req.flash("danger", "Registration not successfull, Please Try Again");
+          res.redirect("/register");
         } else {
           req.flash("success", "Registration is successfull, Please Login");
           res.redirect("/login");
@@ -289,15 +291,16 @@ exports.getQuote = (req, res, next) => {
 
 exports.quote = (req, res, next) => {
   const quoteDetail = `
-    You have a new price quote request.\n\n
-    Client Details\n\n
-    Name: ${req.body.name}\n\n
-    Email: ${req.body.email}\n\n
-    Address: ${req.body.address}\n\n
-    Quote Details\n
-    Items: ${req.body.printDetail}\n\n
-    Design: ${req.body.desingDetail}\n\n
-    Deliver Address: ${req.body.orderDetail}\n\n
+    New Items Quote Price\n\n
+
+    Client Details:\n
+    Name: ${req.body.name}\n
+    Email: ${req.body.email}\n
+    Phone Number: ${req.body.phone}\n\n
+    Quote Detail \n
+    Items to Print: ${req.body.printDetail}\n
+    Design (Do you have a ready made design?): ${req.body.designDetail}\n
+    Deliver Address: ${req.body.orderDetail}\n
   `;
 
   const nodemailerMailgun = nodemailer.createTransport(mailgun(auth));
@@ -307,7 +310,7 @@ exports.quote = (req, res, next) => {
     {
       from: "salesontws@gmail.com",
       to: "anajemiracle@gmail.com", // An array if you have multiple recipients.
-      subject: "Hey you, awesome!",
+      subject: "Price Quote Request",
       "h:Reply-To": "reply2this@company.com",
       //You can use "html:" to send HTML email content. It's magic!
       // html: "<b>Wow Big powerful letters</b>",
@@ -454,25 +457,4 @@ exports.payment_return = (req, res, next) => {
       return;
     });
   })();
-};
-
-exports.checkout_cancel = (req, res, next) => {
-  let order = {};
-  order.orderStatus = "Cancelled";
-  order.orderGatewayResponse = "Cancelled";
-
-  let query = { orderPaymentId: reference };
-
-  Order.update(query, order, function (err) {
-    // handle errors
-    if (err) {
-      req.flash("danger", err.message);
-      console.log(err);
-      res.redirect("");
-    }
-    // set cart to empty
-    req.session.cart = null;
-    res.render("order_successful", { reference });
-    return;
-  });
 };

@@ -51,10 +51,12 @@ const Orderschema = new mongoose.Schema({
   },
   orderPhone: Number,
   orderStatus: {
-    type: String
+    type: String,
+    default: "Failed"
   },
   orderGatewayResponse: {
-    type: String
+    type: String,
+    default: "Failed"
   },
   orderComment: {
     type: String

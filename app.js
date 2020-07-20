@@ -17,8 +17,7 @@ require("dotenv").config();
 
 // mongoDb setup
 mongoose.set("useCreateIndex", true);
-mongoose
-  .connect(process.env.Database, { useNewUrlParser: true, autoReconnect: true, useUnifiedTopology: true })
+mongoose.connect(process.env.Database, { useNewUrlParser: true, autoReconnect: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 

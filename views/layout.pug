@@ -53,11 +53,9 @@ body
                     a.dropdown-item.nav-drop(href='/users/orders') Order History
                     a.dropdown-item.nav-drop(href='/logout') Log Out
                 li.nav-item
+                  if session.cart
                     a.nav-link(href='/cart')
-                      i.fa.fa-shopping-cart 
-                        br 
-                        span Cart
-                      if session.cart
+                      i.fa.fa-shopping-cart
                         span.badge= session.cart.totalQty
               else
                 li.nav-item

@@ -7,72 +7,43 @@ const User = mongoose.model("User");
 const Cart = require("../models/cart");
 const Order = mongoose.model("Order");
 const { check, validationResult } = require("express-validator");
-const uploadFile = require("../handlers/uploadfile");
+const cloudinary = require("cloudinary").v2;
 
+require("../handlers/cloudinary");
 require("dotenv").config();
 
 const backURL = (req) => req.header("Referer");
 
-exports.addproduct = (req, res, next) => {
-  // 1. set details
-  const details = {
-    destination: "./public/uploads",
-    field: "myFile",
-    fileLimit: 500000,
-    allowedExts: "jpg|jpeg|png",
-  };
+exports.addproduct = async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
 
-  // 2. initialize upload
-  const upload = uploadFile(req, details);
+  // save path in db
+  const product = new Product();
+  product.name = req.body.name;
+  product.code = req.body.code;
+  product.category = req.body.category;
+  product.size = req.body.size;
+  product.material = req.body.material;
+  product.materialDescription = req.body.materialDescription;
+  product.color = req.body.color;
+  product.price = req.body.price;
+  product.description = req.body.description;
+  product.inStock = req.body.inStock;
+  product.imageUrl = result.secure_url;
 
-  // 3. handle upload
-  upload(req, res, (err) => {
-    let error;
-    if (err) {
-      error = err.message;
-    } else {
-      // check if file is not uploaded
-      if (req.file == undefined) {
-        error = "no image was uploaded";
-      }
-    }
-
-    // if error, set flash message and redirect
-    if (!!error) {
-      req.flash("danger", error);
-      res.redirect(backURL(req));
-    } else {
-      // no errors, handle path
-      const imagepath = `/${req.file.path.split("\\").slice(1).join("/")}`;
-      // save path in db
-      const product = new Product();
-      product.name = req.body.name;
-      product.code = req.body.code;
-      product.category = req.body.category;
-      product.size = req.body.size;
-      product.material = req.body.material;
-      product.materialDescription = req.body.materialDescription;
-      product.color = req.body.color;
-      product.price = req.body.price;
-      product.description = req.body.description;
-      product.inStock = req.body.inStock;
-      product.imageUrl = imagepath;
-
-      product.save((err) => {
-        // handle errors
-        if (err) {
-          req.flash("danger", err.message);
-          console.log(err);
-          res.redirect("/admin/add-product");
-        } else {
-          // no errors, return success message
-          req.flash("success", "Product has been added Successfully");
-          // redirect to the add product view
-          res.redirect("/admin/add-product");
-        }
-      });
-    }
-  });
+  product
+    .save()
+    .then((err) => {
+      // no errors, return success message
+      req.flash("success", "Product has been added Successfully");
+      // redirect to the add product view
+      res.redirect("/admin/add-product");
+    })
+    .catch((err) => {
+      req.flash("danger", err.message);
+      console.log(err);
+      res.redirect("/admin/add-product");
+    });
 };
 
 exports.addproductpage = (req, res, next) => {
