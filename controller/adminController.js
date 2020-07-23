@@ -140,7 +140,7 @@ exports.logout = (req, res, next) => {
 
 exports.adminHome = async (req, res, next) => {
   const stats = await User.count({});
-  const orders = await Order.count({ orderStatus: "created" });
+  const orders = await Order.count({ orderStatus: "Created || Successful || Approved" });
   const products = await Product.count({});
   res.render("adminHome", { stats, orders, products });
 };
