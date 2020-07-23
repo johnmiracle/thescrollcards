@@ -2,34 +2,8 @@ extends ./admin/base
 include ./mixins/_flash-messages
 
 block content
-    .col-sm-12
+    .col-sm-12.mb-4.mt-4
       h2 Orders
-    .col-sm-12.search_bar
-      .input-group
-        input#order_filter.form-control(type='text', name='order_filter', placeholder='Filter orders')
-        .input-group-append
-          button#btn_order_filter.btn.btn-outline-success Filter
-          a.hidden-xs.btn.btn-outline-info.orderFilterByStatus(href='/admin/orders/bystatus/')
-            | By
-            | status
-          a.hidden-xs.btn.btn-outline-warning(href='/admin/orders')
-            i.fa.fa-search
-      .orderFilter
-        .row
-          .text-warning.top-pad-10.col-sm-8
-            | Orders can be filtered by: surname, email
-            | address or
-            | postcode/zipcode
-          .col-sm-4.top-pad-10
-            form.form-inline.float-sm-right
-              select#orderStatusFilter.form-control
-                option Completed
-                option Paid
-                option Created
-                option Cancelled
-                option Declined
-                option Shipped
-                option Pending
     .col-sm-12.top-pad-10
       ul.list-group
         li.list-group-item
