@@ -157,6 +157,15 @@ exports.viewProductEdit = (req, res, next) => {
   });
 };
 
+
+exports.users = (req, res, next) => {
+  User.find({}, function (err, users) {
+    if (err) return console.log(err);
+    res.render("admin-users", { users });
+  });
+};
+
+
 exports.productEdit = (req, res, next) => {
   let product = [];
   product.name = req.body.name;

@@ -1,0 +1,31 @@
+extends ./admin/base
+include ./mixins/_flash-messages
+
+block content
+    .container-fluid
+      .table-wrapper
+        .table-title
+          .row
+            .col-sm-8
+              h2 
+                b All Users
+        table.table.table-bordered
+          thead
+            tr
+              th Name
+              th Email
+              th Mobile Number
+              th Date of birth
+              th Address
+
+          tbody
+            each user, i in users
+                tr
+                td #{user.firstName} #{user.lastName}
+                td #{user.email}
+                td #{user.phone || "Empty"}
+                td #{user.dob || "Empty"}
+                td #{user.address || "Empty"}
+
+              
+                

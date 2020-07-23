@@ -16,13 +16,6 @@ block content
       .col-md-6.bottom-pad-30
         .card
           .card-body.text-center
-            h5.card-title Order total value
-            h6.card-subtitle.mb-2.text-muted Total value of orders placed
-            h4.card-text.text-danger
-              | &pound;11837.50
-      .col-md-6.bottom-pad-30
-        .card
-          .card-body.text-center
             h5.card-title Products for sale
             h6.card-subtitle.mb-2.text-muted Number of products for sale
             h4.card-text.text-danger
@@ -33,113 +26,11 @@ block content
             h5.card-title Total products sold
             h6.card-subtitle.mb-2.text-muted Number of products sold
             h4.card-text.text-danger
-              | 172
-      .col-12.bottom-pad-30
+              | 0
+      .col-md-6.bottom-pad-30
         .card
           .card-body.text-center
-            h5.card-title Top products sold
-            ul.list-unstyled
-              li.media.my-4.align-middle
-                img.col-2.mr-3.img-fluid(src='/uploads/6fda2512-85a0-485c-ad92-11e6e56024a7.jpg', alt='')
-                .media-body
-                  h5.mt-3.mb-1 Hudderton Backpack
-                  h4.mt-4
-                    | Sold: 
-                    span.text-danger 59
-              li.media.my-4.align-middle
-                img.col-2.mr-3.img-fluid(src='/uploads/58cef36e-748d-4e96-be85-9e9ea9c6de34.png', alt='')
-                .media-body
-                  h5.mt-3.mb-1 Ayres Chambray
-                  h4.mt-4
-                    | Sold: 
-                    span.text-danger 27
-              li.media.my-4.align-middle
-                img.col-2.mr-3.img-fluid(src='/uploads/70a02f60-89c2-4752-aa18-181d08f95558.png', alt='')
-                .media-body
-                  h5.mt-3.mb-1 5 Panel Camp Cap
-                  h4.mt-4
-                    | Sold: 
-                    span.text-danger 25
-              li.media.my-4.align-middle
-                img.col-2.mr-3.img-fluid(src='/uploads/f9443d10-ca9e-477c-8c60-fd13251da7ae.jpg', alt='')
-                .media-body
-                  h5.mt-3.mb-1 Scout Backpack
-                  h4.mt-4
-                    | Sold: 
-                    span.text-danger 20
-              li.media.my-4.align-middle
-                img.col-2.mr-3.img-fluid(src='/uploads/5df73366a832c067fdf7bfd6/5-panel-hat_4ee20a27-8d5a-490e-a2fc-1f9c3beb7bf5_grande.jpg', alt='')
-                .media-body
-                  h5.mt-3.mb-1 5 Panel Camp Cap
-                  h4.mt-4
-                    | Sold: 
-                    span.text-danger 18
-        br
-
-    //- // Content Wrapper. Contains page content
-    //- .content
-    //-   .content-header
-    //-     .container-fluid
-    //-       .row
-    //-         .col-md-6
-    //-           h1.m-0.text-dark Dashboard
-    //-         // /.col
-    //-         .col-md-6
-    //-           ol.breadcrumb.float-sm-right
-    //-             li.breadcrumb-item
-    //-               a(href='#') Home
-    //-             li.breadcrumb-item.active Dashboard v1
-    //-   section.content
-    //-     .container-fluid
-    //-       // Small boxes (Stat box)
-    //-       .row
-    //-         .col-lg-3.col-6
-    //-           // small box
-    //-           .small-box.bg-info
-    //-             .inner
-    //-               h3 150
-    //-               p New Orders
-    //-             .icon
-    //-               i.ion.ion-bag
-    //-             a.small-box-footer(href='#')
-    //-               | More info 
-    //-               i.fas.fa-arrow-circle-right
-    //-         // ./col
-    //-         .col-lg-3.col-6
-    //-           // small box
-    //-           .small-box.bg-success
-    //-             .inner
-    //-               h3
-    //-                 | 53
-    //-                 sup(style='font-size: 20px') %
-    //-               p Bounce Rate
-    //-             .icon
-    //-               i.ion.ion-stats-bars
-    //-             a.small-box-footer(href='#')
-    //-               | More info 
-    //-               i.fas.fa-arrow-circle-right
-    //-         // ./col
-    //-         .col-lg-3.col-6
-    //-           // small box
-    //-           .small-box.bg-warning
-    //-             .inner
-    //-               h3 #{stats}
-    //-               p Users Registered
-    //-             .icon
-    //-               i.ion.ion-person-add
-    //-             a.small-box-footer(href='/admin/users')
-    //-               | More info 
-    //-               i.fas.fa-arrow-circle-right
-    //-         // ./col
-    //-         .col-lg-3.col-6
-    //-           // small box
-    //-           .small-box.bg-danger
-    //-             .inner
-    //-               h3 65
-    //-               p Unique Visitors
-    //-             .icon
-    //-               i.ion.ion-pie-graph
-    //-             a.small-box-footer(href='#')
-    //-               | More info 
-    //-               i.fas.fa-arrow-circle-right
-    //-         // ./col
+            h5.card-title Users
+            h6.card-subtitle.mb-2.text-muted Total number of registered users
+            h4.card-text.text-danger
+              | #{stats}
