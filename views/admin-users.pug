@@ -15,8 +15,8 @@ block content
               th Name
               th Email
               th Mobile Number
-              th Date of birth
               th Address
+              th Date of birth
 
           tbody
             each user, i in users
@@ -24,8 +24,8 @@ block content
                 td #{user.firstName} #{user.lastName}
                 td #{user.email}
                 td #{user.phone || "Empty"}
-                td #{user.dob || "Empty"}
                 td #{user.address || "Empty"}
+                td #{user.dob || "Empty"}
 
               
                 
